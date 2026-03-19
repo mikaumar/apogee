@@ -38,7 +38,7 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,san
 .sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border);}
 .prog-row{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--text-dim);margin-bottom:5px;}
 .prog-track{height:2px;background:var(--border);}
-.prog-fill{height:100%;background:var(--gold);transition:width 0.4s;width:3.6%;}
+.prog-fill{height:100%;background:var(--gold);transition:width 0.4s;width:2.6%;}
 .content{flex:1;overflow-y:auto;height:calc(100vh - 56px);}
 .mod{display:none;animation:fadeUp 0.3s ease;}
 .mod.active{display:block;}
@@ -195,7 +195,7 @@ canvas{display:block;width:100%;}
 </div>
 <div class="header-right">
 <div class="live-dot"><div class="dot"></div>LIVE</div>
-<div class="mod-num" id="modCtr">01 / 28</div>
+<div class="mod-num" id="modCtr">01 / 38</div>
 </div>
 </div>
 <div class="layout">
@@ -239,6 +239,22 @@ canvas{display:block;width:100%;}
 <button class="nbtn" onclick="nav(25)"><span class="nav-num">26</span>IFRS 9 Deep Dive</button>
 <button class="nbtn" onclick="nav(26)"><span class="nav-num">27</span>Model Validation</button>
 <button class="nbtn" onclick="nav(27)"><span class="nav-num">28</span>Derivatives & Infrastructure</button>
+</div>
+<div class="nav-section"><div class="nav-label">VII · Regulatory & Capital</div>
+<button class="nbtn" onclick="nav(28)"><span class="nav-num">29</span>Basel III/IV Capital</button>
+<button class="nbtn" onclick="nav(29)"><span class="nav-num">30</span>Migration Matrices</button>
+<button class="nbtn" onclick="nav(30)"><span class="nav-num">31</span>Concentration Risk</button>
+</div>
+<div class="nav-section"><div class="nav-label">VIII · Counterparty & Transfer</div>
+<button class="nbtn" onclick="nav(31)"><span class="nav-num">32</span>Wrong-Way Risk</button>
+<button class="nbtn" onclick="nav(32)"><span class="nav-num">33</span>Capital Allocation</button>
+<button class="nbtn" onclick="nav(33)"><span class="nav-num">34</span>Credit Risk Transfer</button>
+</div>
+<div class="nav-section"><div class="nav-label">IX · Frontier</div>
+<button class="nbtn" onclick="nav(34)"><span class="nav-num">35</span>Climate Credit Risk</button>
+<button class="nbtn" onclick="nav(35)"><span class="nav-num">36</span>Network / Contagion</button>
+<button class="nbtn" onclick="nav(36)"><span class="nav-num">37</span>Deep Learning PD</button>
+<button class="nbtn" onclick="nav(37)"><span class="nav-num">38</span>Kessler Cascade</button>
 </div>
 <div class="sidebar-footer">
 <div class="prog-row"><span>PROGRESS</span><span id="pctLbl">4%</span></div>
@@ -1550,7 +1566,412 @@ canvas{display:block;width:100%;}
 
   <div class="callout"><strong>SWF relevance:</strong> sovereign wealth funds (your primary institutional target) are sophisticated about sovereign credit because they manage sovereign balance sheet risk daily. Framing SFIS outputs in the same analytical language as sovereign credit analysis — coverage ratios, structural protections, macroeconomic sensitivities — is the fastest path to credibility with SWF credit teams.</div>
 
-</div><div class="mfooter"><button class="btn" onclick="nav(26)">← Prev</button><button class="btn" style="color:var(--green);border-color:var(--green);" disabled>All Modules Complete ✓</button></div></div>
+</div><div class="mfooter"><button class="btn" onclick="nav(26)">← Prev</button><button class="btn primary" onclick="nav(28)">Next: Basel III/IV Capital →</button></div></div>
+
+<!-- ═══ MODULE 29: Basel III/IV Capital Rules ═══ -->
+<div class="mod" id="p28">
+  <div class="hero"><div class="hero-tag">Module 29 // Regulatory &amp; Capital</div><div class="hero-title">Basel III/IV <span>Capital Rules</span></div><div class="hero-sub">The regulatory framework that determines how much capital banks must hold against credit risk. IRB vs SA, output floors, and the road to Basel IV.</div></div>
+  <div class="body">
+    <p>Basel III requires banks to hold capital against unexpected losses. The Internal Ratings-Based (IRB) approach uses the bank's own PD, LGD, and EAD estimates. The Standardised Approach (SA) uses fixed risk weights by asset class. Basel IV introduces an output floor: IRB capital cannot fall below 72.5% of the SA figure.</p>
+
+    <div class="formula">
+      <div class="fl">IRB Capital Requirement (K)</div>
+      K = LGD &times; [N((1&minus;R)<sup>&minus;0.5</sup> &times; G(PD) + (R/(1&minus;R))<sup>0.5</sup> &times; G(0.999)) &minus; PD]<br>
+      RWA = K &times; 12.5 &times; EAD<br>
+      <span class="c">// Capital Ratio = Eligible Capital / RWA &ge; 8% (10.5% with buffers)</span>
+      <div class="fn">N(): cumulative normal | G(): inverse normal | R: asset correlation | PD: probability of default<br>
+      The formula computes conditional expected loss at the 99.9th percentile minus EL, isolating unexpected loss.</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Approach</th><th>PD Source</th><th>LGD Source</th><th>Risk Weights</th><th>Output Floor</th></tr>
+      <tr><td class="tg">SA</td><td class="tm">Not used</td><td class="tm">Fixed by regulation</td><td class="tm">20%&ndash;150% by rating</td><td class="tm">N/A (is the floor)</td></tr>
+      <tr><td class="tg">F-IRB</td><td class="tm">Bank estimate</td><td class="tm">Fixed by regulation</td><td class="tm">Formula-based</td><td class="tm">72.5% of SA</td></tr>
+      <tr><td class="tg">A-IRB</td><td class="tm">Bank estimate</td><td class="tm">Bank estimate</td><td class="tm">Formula-based</td><td class="tm">72.5% of SA</td></tr>
+    </table>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">IRB Capital Calculator</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>PD</em> Probability of Default</span><input type="range" id="n_pd28" min="0.03" max="20" step="0.01" value="2" oninput="n_calcBasel()"><span class="sv" id="n_pd28v">2.00%</span></div>
+        <div class="sr"><span class="sl"><em>LGD</em> Loss Given Default</span><input type="range" id="n_lgd28" min="10" max="100" step="1" value="45" oninput="n_calcBasel()"><span class="sv" id="n_lgd28v">45%</span></div>
+        <div class="sr"><span class="sl"><em>EAD</em> Exposure ($M)</span><input type="range" id="n_ead28" min="10" max="1000" step="10" value="100" oninput="n_calcBasel()"><span class="sv" id="n_ead28v">$100M</span></div>
+        <div class="sr"><span class="sl"><em>R</em> Asset Correlation</span><input type="range" id="n_R28" min="0.03" max="0.50" step="0.01" value="0.15" oninput="n_calcBasel()"><span class="sv" id="n_R28v">0.15</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Capital K</div><div class="mv vgo" id="n_k28">&mdash;</div><div class="ms">Per unit EAD</div></div>
+          <div class="met"><div class="ml">RWA</div><div class="mv" id="n_rwa28">&mdash;</div><div class="ms">Risk-Weighted Assets</div></div>
+          <div class="met"><div class="ml">Capital Charge</div><div class="mv vmi" id="n_cap28">&mdash;</div><div class="ms">8% of RWA</div></div>
+          <div class="met"><div class="ml">Output Floor (72.5%)</div><div class="mv" id="n_floor28">&mdash;</div><div class="ms">Min capital under Basel IV</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c28" height="180"></canvas></div>
+      </div>
+    </div>
+
+    <div class="callout"><strong>Basel IV timeline:</strong> The output floor phases in from 2023 to 2028 (50% rising to 72.5%). For banks with aggressive IRB models, the floor may bind &mdash; increasing capital requirements by 10&ndash;25%. This is the single largest regulatory capital impact of the decade.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(27)">&larr; Prev</button><button class="btn primary" onclick="nav(29)">Next: Migration Matrices &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 30: Credit Migration Matrices ═══ -->
+<div class="mod" id="p29">
+  <div class="hero"><div class="hero-tag">Module 30 // Regulatory &amp; Capital</div><div class="hero-title">Credit <span>Migration Matrices</span></div><div class="hero-sub">The probability of transitioning between credit rating grades over time. The foundation of multi-period credit risk modelling and IFRS 9 staging.</div></div>
+  <div class="body">
+    <p>A transition matrix records the empirical probability of moving from one rating grade to another over a fixed time horizon (typically 1 year). S&amp;P and Moody's publish annual transition matrices from cohort studies.</p>
+
+    <div class="formula">
+      <div class="fl">Multi-Year Transition Matrix</div>
+      M(T) = M(1)<sup>T</sup> <span class="c">// Matrix exponentiation for integer T</span><br>
+      <span class="c">// Generator matrix approach: M(t) = exp(t &times; Q) where Q = log(M(1))</span>
+      <div class="fn">M(1): 1-year transition matrix | M(T): T-year matrix via matrix power<br>Cohort method: track rating at start and end of period. Duration method: continuous observation.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Transition Matrix Explorer</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Horizon</em> Years</span><input type="range" id="n_horizon29" min="1" max="10" step="1" value="1" oninput="n_calcMigration()"><span class="sv" id="n_horizon29v">1 yr</span></div>
+        <div class="sr"><span class="sl"><em>Stress</em> Multiplier</span><input type="range" id="n_stress29" min="1.0" max="3.0" step="0.1" value="1.0" oninput="n_calcMigration()"><span class="sv" id="n_stress29v">1.0&times;</span></div>
+        <div id="n_matrix29" style="margin:14px 0;overflow-x:auto;"></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">BBB &rarr; Default</div><div class="mv vhi" id="n_bbb_def29">&mdash;</div></div>
+          <div class="met"><div class="ml">BBB Downgrade Prob</div><div class="mv vmi" id="n_bbb_dn29">&mdash;</div></div>
+          <div class="met"><div class="ml">BBB Upgrade Prob</div><div class="mv vlo" id="n_bbb_up29">&mdash;</div></div>
+          <div class="met"><div class="ml">BBB Stable Prob</div><div class="mv" id="n_bbb_st29">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c29" height="200"></canvas></div>
+      </div>
+    </div>
+
+    <div class="callout"><strong>IFRS 9 connection:</strong> SICR (Significant Increase in Credit Risk) is triggered by multi-notch downgrade probability. The transition matrix feeds directly into lifetime PD calculation for Stage 2 classification. A BBB-rated exposure with a 5-year cumulative default probability exceeding the origination threshold moves to Stage 2.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(28)">&larr; Prev</button><button class="btn primary" onclick="nav(30)">Next: Concentration Risk &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 31: Concentration Risk ═══ -->
+<div class="mod" id="p30">
+  <div class="hero"><div class="hero-tag">Module 31 // Regulatory &amp; Capital</div><div class="hero-title"><span>Concentration</span> Risk</div><div class="hero-sub">When portfolio diversification breaks down. Single-name, sector, and geographic concentration amplify tail losses beyond what correlation models predict.</div></div>
+  <div class="body">
+    <p>Concentration risk arises when exposure is not sufficiently diversified across obligors, sectors, or geographies. The Herfindahl-Hirschman Index (HHI) measures single-name concentration. The effective number of exposures is 1/HHI.</p>
+
+    <div class="formula">
+      <div class="fl">Herfindahl-Hirschman Index</div>
+      HHI = &Sigma;<sub>i</sub> w<sub>i</sub><sup>2</sup> <span class="c">// where w_i = exposure_i / total_exposure</span><br>
+      Effective Number = 1 / HHI<br>
+      <span class="c">// Granularity adjustment: GA = (1/N_eff) &times; &sigma;<sup>2</sup>(LGD) &times; correction factor</span>
+      <div class="fn">Perfectly diversified: HHI &rarr; 1/N (equal weights). Concentrated: HHI &rarr; 1 (single obligor).<br>Regulatory large exposure limit: single-name exposure &le; 25% of Tier 1 capital.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Portfolio Concentration Analyser</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>N</em> Number of Exposures</span><input type="range" id="n_nexpo30" min="5" max="200" step="1" value="50" oninput="n_calcHHI()"><span class="sv" id="n_nexpo30v">50</span></div>
+        <div class="sr"><span class="sl"><em>Top-5 Share</em> % of portfolio</span><input type="range" id="n_top530" min="10" max="80" step="1" value="30" oninput="n_calcHHI()"><span class="sv" id="n_top530v">30%</span></div>
+        <div class="sr"><span class="sl"><em>Top-1 Share</em> % of portfolio</span><input type="range" id="n_top130" min="2" max="40" step="1" value="10" oninput="n_calcHHI()"><span class="sv" id="n_top130v">10%</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">HHI</div><div class="mv vgo" id="n_hhi30">&mdash;</div></div>
+          <div class="met"><div class="ml">Effective Number</div><div class="mv" id="n_neff30">&mdash;</div></div>
+          <div class="met"><div class="ml">Concentration Level</div><div class="mv" id="n_conc30">&mdash;</div></div>
+          <div class="met"><div class="ml">Granularity Add-on</div><div class="mv" id="n_ga30">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c30" height="180"></canvas></div>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Limit</th><th>Threshold</th><th>Source</th></tr>
+      <tr><td>Single-name large exposure</td><td class="tg">&le; 25% of Tier 1</td><td class="tm">Basel / CRR Art. 395</td></tr>
+      <tr><td>G-SIB connected limit</td><td class="tg">&le; 15% of Tier 1</td><td class="tm">BCBS 283</td></tr>
+      <tr><td>Sector concentration</td><td class="tm">No hard cap &mdash; Pillar 2</td><td class="tm">Supervisory review</td></tr>
+    </table>
+
+    <div class="callout warn"><strong>SFIS orbital regime concentration:</strong> LEO mega-constellations create extreme concentration risk. Starlink alone operates &gt;6,000 satellites in overlapping orbital shells. A single Kessler event could impair hundreds of assets simultaneously. Standard HHI measures fail to capture this spatially-correlated concentration.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(29)">&larr; Prev</button><button class="btn primary" onclick="nav(31)">Next: Wrong-Way Risk &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 32: Wrong-Way Risk ═══ -->
+<div class="mod" id="p31">
+  <div class="hero"><div class="hero-tag">Module 32 // Counterparty &amp; Transfer</div><div class="hero-title"><span>Wrong-Way</span> Risk</div><div class="hero-sub">When exposure increases precisely when the counterparty's credit quality deteriorates. The most dangerous form of model mis-specification in derivative portfolios.</div></div>
+  <div class="body">
+    <p>Wrong-way risk (WWR) occurs when exposure and counterparty default probability are positively correlated. Standard CVA assumes independence: E[Exposure &times; 1_default] = E[Exposure] &times; PD. Under WWR, the actual expected loss exceeds this product.</p>
+
+    <div class="formula">
+      <div class="fl">Wrong-Way Risk Adjustment</div>
+      CVA_WWR = (1+&alpha;) &times; CVA_standard <span class="c">// &alpha; captures correlation effect</span><br>
+      E[Loss] = E[Exposure | Default] &times; PD &times; LGD <span class="c">// conditional exposure &gt; unconditional</span><br>
+      <span class="c">// General WWR: macro-driven (e.g., rates move with credit spreads)</span><br>
+      <span class="c">// Specific WWR: structural link (e.g., put on own stock)</span>
+      <div class="fn">&alpha;: WWR multiplier (0 = no WWR, &gt;0 = positive correlation between exposure and default)</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Wrong-Way Risk CVA Comparator</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Base Exposure</em> $M</span><input type="range" id="n_expo31" min="10" max="500" step="5" value="100" oninput="n_calcWWR()"><span class="sv" id="n_expo31v">$100M</span></div>
+        <div class="sr"><span class="sl"><em>PD</em> Counterparty</span><input type="range" id="n_pd31" min="0.1" max="15" step="0.1" value="3" oninput="n_calcWWR()"><span class="sv" id="n_pd31v">3.0%</span></div>
+        <div class="sr"><span class="sl"><em>LGD</em></span><input type="range" id="n_lgd31" min="20" max="80" step="1" value="60" oninput="n_calcWWR()"><span class="sv" id="n_lgd31v">60%</span></div>
+        <div class="sr"><span class="sl"><em>&rho;</em> Exposure-Default Corr</span><input type="range" id="n_rho31" min="0" max="0.8" step="0.05" value="0.3" oninput="n_calcWWR()"><span class="sv" id="n_rho31v">0.30</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Standard CVA</div><div class="mv" id="n_cva_std31">&mdash;</div><div class="ms">No WWR</div></div>
+          <div class="met"><div class="ml">WWR-Adjusted CVA</div><div class="mv vhi" id="n_cva_wwr31">&mdash;</div><div class="ms">With correlation</div></div>
+          <div class="met"><div class="ml">WWR Multiplier</div><div class="mv vgo" id="n_wwr_mult31">&mdash;</div></div>
+          <div class="met"><div class="ml">Additional Reserve</div><div class="mv vmi" id="n_wwr_add31">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c31" height="180"></canvas></div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="card-t">Commodity Producer + Swap</div><p>Oil producer enters pay-fixed swap. Oil price drops &rarr; producer revenue falls (credit worsens) AND swap MTM rises (exposure increases). Classic specific WWR.</p></div>
+      <div class="card"><div class="card-t">Satellite Capacity + Operator</div><p>Satellite operator sells capacity forward. If operator faces distress, capacity delivery risk rises AND the replacement cost of the contract increases. SFIS models this linkage explicitly.</p></div>
+    </div>
+
+    <div class="callout"><strong>Regulatory treatment:</strong> CRR Art. 291 requires banks to identify and manage WWR. The SA-CVA framework applies a 1.4&times; multiplier for general WWR. Specific WWR exposures must be excluded from netting sets and treated individually.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(30)">&larr; Prev</button><button class="btn primary" onclick="nav(32)">Next: Capital Allocation &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 33: Economic Capital Allocation ═══ -->
+<div class="mod" id="p32">
+  <div class="hero"><div class="hero-tag">Module 33 // Counterparty &amp; Transfer</div><div class="hero-title">Economic <span>Capital Allocation</span></div><div class="hero-sub">How to distribute portfolio-level economic capital to individual exposures. Euler allocation, marginal contributions, and RAROC.</div></div>
+  <div class="body">
+    <p>Economic capital (EC) is the internal capital a bank holds to absorb unexpected losses at a chosen confidence level (typically 99.9%). Portfolio EC benefits from diversification &mdash; the sum of standalone ECs exceeds diversified EC. The question: how to allocate the diversification benefit fairly?</p>
+
+    <div class="formula">
+      <div class="fl">Euler Capital Allocation</div>
+      EC<sub>i</sub> = w<sub>i</sub> &times; &part;EC/&part;w<sub>i</sub> <span class="c">// Euler's theorem for homogeneous functions</span><br>
+      &Sigma;<sub>i</sub> EC<sub>i</sub> = EC<sub>portfolio</sub> <span class="c">// Euler allocations sum exactly to portfolio EC</span><br>
+      RAROC<sub>i</sub> = (Spread<sub>i</sub> &minus; EL<sub>i</sub>) / EC<sub>i</sub>
+      <div class="fn">Marginal contribution: additional capital required if exposure i increases by a small amount.<br>RAROC: Risk-Adjusted Return on Capital. Hurdle rate typically 12&ndash;15%.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">5-Asset Euler Capital Allocator</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Asset A</em> Weight</span><input type="range" id="n_wA32" min="5" max="50" step="1" value="30" oninput="n_calcEuler()"><span class="sv" id="n_wA32v">30%</span></div>
+        <div class="sr"><span class="sl"><em>Asset B</em> Weight</span><input type="range" id="n_wB32" min="5" max="50" step="1" value="25" oninput="n_calcEuler()"><span class="sv" id="n_wB32v">25%</span></div>
+        <div class="sr"><span class="sl"><em>Asset C</em> Weight</span><input type="range" id="n_wC32" min="5" max="50" step="1" value="20" oninput="n_calcEuler()"><span class="sv" id="n_wC32v">20%</span></div>
+        <div class="sr"><span class="sl"><em>Asset D</em> Weight</span><input type="range" id="n_wD32" min="5" max="50" step="1" value="15" oninput="n_calcEuler()"><span class="sv" id="n_wD32v">15%</span></div>
+        <div class="sr"><span class="sl"><em>Asset E</em> Weight</span><input type="range" id="n_wE32" min="5" max="50" step="1" value="10" oninput="n_calcEuler()"><span class="sv" id="n_wE32v">10%</span></div>
+        <div class="mets m3">
+          <div class="met"><div class="ml">Standalone EC (sum)</div><div class="mv" id="n_ec_stand32">&mdash;</div></div>
+          <div class="met"><div class="ml">Diversified EC</div><div class="mv vgo" id="n_ec_div32">&mdash;</div></div>
+          <div class="met"><div class="ml">Diversification Benefit</div><div class="mv vlo" id="n_ec_ben32">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c32" height="200"></canvas></div>
+        <div id="n_raroc_tbl32" style="margin-top:10px;"></div>
+      </div>
+    </div>
+
+    <div class="callout"><strong>RAROC decision rule:</strong> if RAROC &gt; hurdle rate, the exposure creates value. If RAROC &lt; hurdle rate, the capital is better deployed elsewhere. Euler allocation ensures the decision is consistent: no exposure is subsidised by or penalised relative to its true risk contribution.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(31)">&larr; Prev</button><button class="btn primary" onclick="nav(33)">Next: Credit Risk Transfer &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 34: Credit Risk Transfer ═══ -->
+<div class="mod" id="p33">
+  <div class="hero"><div class="hero-tag">Module 34 // Counterparty &amp; Transfer</div><div class="hero-title">Credit Risk <span>Transfer</span></div><div class="hero-sub">CDS, guarantees, securitisation, and sub-participation. The mechanisms by which credit risk moves from originators to investors &mdash; and the conditions under which regulators recognise the transfer.</div></div>
+  <div class="body">
+    <p>Credit Risk Transfer (CRT) allows banks to reduce regulatory capital by transferring credit risk to third parties. The Significant Risk Transfer (SRT) test determines whether the bank receives capital relief. Basel requires that the originator transfers a meaningful portion of the risk &mdash; not just the first loss or just the senior tranche.</p>
+
+    <div class="formula">
+      <div class="fl">Tranche Expected Loss</div>
+      EL<sub>tranche</sub> = max(0, min(pool_EL, D) &minus; A) / (D &minus; A)<br>
+      <span class="c">// A = attachment point, D = detachment point, pool_EL = pool-level expected loss</span><br>
+      Tranche thickness = D &minus; A
+      <div class="fn">Equity tranche (0-A): absorbs first losses. Mezzanine (A-D): absorbs after equity. Senior (D-100%): last to absorb.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Securitisation Tranche Analyser</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Pool PD</em></span><input type="range" id="n_poolpd33" min="0.5" max="15" step="0.1" value="3" oninput="n_calcCRT()"><span class="sv" id="n_poolpd33v">3.0%</span></div>
+        <div class="sr"><span class="sl"><em>Pool LGD</em></span><input type="range" id="n_poollgd33" min="20" max="80" step="1" value="45" oninput="n_calcCRT()"><span class="sv" id="n_poollgd33v">45%</span></div>
+        <div class="sr"><span class="sl"><em>Attachment</em> %</span><input type="range" id="n_attach33" min="0" max="20" step="0.5" value="3" oninput="n_calcCRT()"><span class="sv" id="n_attach33v">3%</span></div>
+        <div class="sr"><span class="sl"><em>Detachment</em> %</span><input type="range" id="n_detach33" min="5" max="100" step="1" value="15" oninput="n_calcCRT()"><span class="sv" id="n_detach33v">15%</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Pool EL</div><div class="mv" id="n_poolel33">&mdash;</div></div>
+          <div class="met"><div class="ml">Tranche EL</div><div class="mv vhi" id="n_trancheel33">&mdash;</div></div>
+          <div class="met"><div class="ml">Tranche Thickness</div><div class="mv vgo" id="n_thickness33">&mdash;</div></div>
+          <div class="met"><div class="ml">Credit Enhancement</div><div class="mv vlo" id="n_ce33">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c33" height="200"></canvas></div>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>CRT Mechanism</th><th>Funded?</th><th>Capital Relief</th><th>Key Condition</th></tr>
+      <tr><td>CDS (single-name)</td><td class="tm">No</td><td class="tg">Substitution approach</td><td>Eligible protection seller</td></tr>
+      <tr><td>Guarantee</td><td class="tm">No</td><td class="tg">Substitution approach</td><td>Irrevocable, unconditional</td></tr>
+      <tr><td>Synthetic securitisation</td><td class="tm">No</td><td class="tg">SRT test required</td><td>Meaningful risk transfer</td></tr>
+      <tr><td>True sale securitisation</td><td class="tg">Yes</td><td class="tg">Full derecognition possible</td><td>True sale opinion + SRT</td></tr>
+      <tr><td>Insurance wrap</td><td class="tm">No</td><td class="tm">Partial (Pillar 2)</td><td>Insurer rating, claims history</td></tr>
+    </table>
+
+    <div class="callout good"><strong>Satellite insurance as CRT:</strong> launch and in-orbit insurance transfers the physical risk component of satellite credit. If insurance covers 100% of replacement cost, the LGD falls from ~90% to ~10%. SFIS models insurance as a funded credit protection mechanism, reducing both EL and EC allocations.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(32)">&larr; Prev</button><button class="btn primary" onclick="nav(34)">Next: Climate Credit Risk &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 35: Climate Credit Risk ═══ -->
+<div class="mod" id="p34">
+  <div class="hero"><div class="hero-tag">Module 35 // Frontier</div><div class="hero-title">Climate <span>Credit Risk</span></div><div class="hero-sub">Physical risk, transition risk, and NGFS scenarios. How climate change reshapes probability of default across every asset class.</div></div>
+  <div class="body">
+    <p>Climate risk transmits to credit risk through two channels. Physical risk: extreme weather, sea-level rise, and chronic changes damage assets and reduce cash flows. Transition risk: carbon pricing, regulation, and technology shifts strand assets and alter competitive dynamics.</p>
+
+    <div class="formula">
+      <div class="fl">Climate-Adjusted PD</div>
+      PD_climate = PD_base &times; (1 + &beta;<sub>phys</sub> &times; PhysRisk + &beta;<sub>trans</sub> &times; TransRisk)<br>
+      <span class="c">// PhysRisk: physical risk score (0-1), TransRisk: transition risk score (0-1)</span>
+      <div class="fn">&beta; coefficients calibrated to NGFS scenario outputs. Orderly transition: low physical, moderate transition.<br>Hot house: high physical, low transition. Disorderly: high physical, high transition.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Climate Risk PD Adjuster</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Base PD</em></span><input type="range" id="n_basepd34" min="0.1" max="10" step="0.1" value="2" oninput="n_calcClimate()"><span class="sv" id="n_basepd34v">2.0%</span></div>
+        <div class="sr"><span class="sl"><em>Carbon Price</em> $/tonne</span><input type="range" id="n_carbon34" min="0" max="250" step="5" value="50" oninput="n_calcClimate()"><span class="sv" id="n_carbon34v">$50</span></div>
+        <div class="sr"><span class="sl"><em>Physical Risk</em> Multiplier</span><input type="range" id="n_phys34" min="1.0" max="3.0" step="0.1" value="1.2" oninput="n_calcClimate()"><span class="sv" id="n_phys34v">1.2&times;</span></div>
+        <div class="sr"><span class="sl"><em>Transition Speed</em></span><input type="range" id="n_trans34" min="0" max="100" step="5" value="40" oninput="n_calcClimate()"><span class="sv" id="n_trans34v">40%</span></div>
+        <div class="mets m3">
+          <div class="met"><div class="ml">Base PD</div><div class="mv" id="n_pd_base34">&mdash;</div></div>
+          <div class="met"><div class="ml">Climate-Adjusted PD</div><div class="mv vhi" id="n_pd_adj34">&mdash;</div></div>
+          <div class="met"><div class="ml">PD Uplift</div><div class="mv vmi" id="n_pd_uplift34">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c34" height="180"></canvas></div>
+      </div>
+    </div>
+
+    <div class="scen-grid">
+      <div class="scen-card"><div class="scen-t">Orderly Transition</div><div class="scen-v" style="font-size:13px;">Low physical risk, gradual carbon pricing, early policy action</div><div class="scen-s">PD uplift: +5&ndash;15%</div></div>
+      <div class="scen-card"><div class="scen-t">Disorderly Transition</div><div class="scen-v" style="font-size:13px;">Delayed action, then sudden policy shift. High transition + physical risk</div><div class="scen-s">PD uplift: +20&ndash;50%</div></div>
+      <div class="scen-card"><div class="scen-t">Hot House World</div><div class="scen-v" style="font-size:13px;">No policy action. Extreme physical risk. Chronic GDP impact.</div><div class="scen-s">PD uplift: +30&ndash;80%</div></div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Transmission Channel</th><th>Physical Risk</th><th>Transition Risk</th></tr>
+      <tr><td>Asset damage / impairment</td><td class="tr">Direct</td><td class="tm">Stranded assets</td></tr>
+      <tr><td>Revenue disruption</td><td class="tr">Supply chain breaks</td><td class="tm">Demand shift</td></tr>
+      <tr><td>Operating cost increase</td><td class="tm">Adaptation costs</td><td class="tr">Carbon pricing</td></tr>
+      <tr><td>Funding cost increase</td><td class="tm">Insurance repricing</td><td class="tm">ESG screening</td></tr>
+    </table>
+
+    <div class="callout"><strong>Space sector climate nexus:</strong> satellites are infrastructure assets with 15-year horizons. Ground station flooding, launch facility exposure, and thermal management in orbit are physical risks. Transition risk is lower &mdash; satellites enable climate monitoring and are net contributors to ESG objectives.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(33)">&larr; Prev</button><button class="btn primary" onclick="nav(35)">Next: Network / Contagion &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 36: Network & Contagion Models ═══ -->
+<div class="mod" id="p35">
+  <div class="hero"><div class="hero-tag">Module 36 // Frontier</div><div class="hero-title">Network &amp; <span>Contagion</span> Models</div><div class="hero-sub">Systemic risk through interconnected defaults. When one node fails, the cascade propagates through the network, amplifying losses far beyond the initial shock.</div></div>
+  <div class="body">
+    <p>Financial networks exhibit contagion: the default of one institution imposes losses on its counterparties, potentially triggering further defaults. The Eisenberg-Noe clearing model finds the unique clearing vector &mdash; the set of payments each node can make given incoming payments from others. DebtRank extends this to partial defaults.</p>
+
+    <div class="formula">
+      <div class="fl">DebtRank Algorithm</div>
+      h<sub>i</sub>(t+1) = min(1, h<sub>i</sub>(t) + &Sigma;<sub>j&in;N(i)</sub> W<sub>ji</sub> &times; &Delta;h<sub>j</sub>(t))<br>
+      <span class="c">// h_i: stress level of node i (0=healthy, 1=defaulted)</span><br>
+      <span class="c">// W_ji: relative exposure of i to j (exposure / equity)</span>
+      <div class="fn">DebtRank captures the fraction of economic value lost in the cascade.<br>Systemic importance: the total DebtRank impact if a single node defaults.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">5-Node Contagion Simulator</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Link Strength</em> Base exposure</span><input type="range" id="n_link35" min="0.05" max="0.8" step="0.05" value="0.3" oninput="n_calcNetwork()"><span class="sv" id="n_link35v">0.30</span></div>
+        <div class="sr"><span class="sl"><em>Shock Node</em> Initial default</span><input type="range" id="n_shock35" min="0" max="4" step="1" value="0" oninput="n_calcNetwork()"><span class="sv" id="n_shock35v">Node A</span></div>
+        <div class="sr"><span class="sl"><em>Connectivity</em> Network density</span><input type="range" id="n_density35" min="0.3" max="1.0" step="0.1" value="0.7" oninput="n_calcNetwork()"><span class="sv" id="n_density35v">70%</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Direct Loss</div><div class="mv" id="n_direct35">&mdash;</div></div>
+          <div class="met"><div class="ml">Cascade Loss</div><div class="mv vhi" id="n_cascade35">&mdash;</div></div>
+          <div class="met"><div class="ml">Contagion Multiplier</div><div class="mv vgo" id="n_contagion35">&mdash;</div></div>
+          <div class="met"><div class="ml">Nodes Defaulted</div><div class="mv vmi" id="n_defaults35">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c35" height="220"></canvas></div>
+      </div>
+    </div>
+
+    <div class="callout"><strong>Network topology matters:</strong> scale-free networks (few highly connected hubs) are robust to random failures but fragile to targeted attacks on hubs. The interbank market exhibits this topology. Orbital networks may exhibit similar properties &mdash; a few relay satellites or ground stations serve as critical hubs.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(34)">&larr; Prev</button><button class="btn primary" onclick="nav(36)">Next: Deep Learning PD &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 37: Deep Learning for PD ═══ -->
+<div class="mod" id="p36">
+  <div class="hero"><div class="hero-tag">Module 37 // Frontier</div><div class="hero-title">Deep Learning <span>for PD</span></div><div class="hero-sub">LSTM, attention mechanisms, and transformers applied to default prediction. Higher accuracy, lower explainability &mdash; and the regulatory tension that creates.</div></div>
+  <div class="body">
+    <p>Deep learning models capture non-linear interactions and temporal dependencies that logistic regression cannot. LSTM networks process time-series data (financial ratios, market signals, telemetry). Attention mechanisms identify which time steps and features matter most. But credit regulators require explainability (SR 11-7, SS1/23).</p>
+
+    <table class="tbl">
+      <tr><th>Model</th><th>Accuracy (AUC)</th><th>Explainability</th><th>Data Requirement</th><th>Regulatory Status</th></tr>
+      <tr><td>Logistic Regression</td><td class="tg">0.70&ndash;0.75</td><td class="tg">Full</td><td class="tg">Low (100s)</td><td class="tg">Approved</td></tr>
+      <tr><td>XGBoost / GBM</td><td class="tg">0.78&ndash;0.83</td><td class="tm">Partial (SHAP)</td><td class="tm">Medium (1000s)</td><td class="tm">Case-by-case</td></tr>
+      <tr><td>LSTM</td><td class="tm">0.80&ndash;0.86</td><td class="tr">Low</td><td class="tr">High (10000s+)</td><td class="tr">Challenger only</td></tr>
+      <tr><td>Transformer</td><td class="tm">0.82&ndash;0.88</td><td class="tr">Very low</td><td class="tr">Very high</td><td class="tr">Research only</td></tr>
+    </table>
+
+    <div class="formula">
+      <div class="fl">Bias-Variance Tradeoff</div>
+      MSE = Bias<sup>2</sup> + Variance + Irreducible Noise<br>
+      <span class="c">// Simple models: high bias, low variance (underfitting)</span><br>
+      <span class="c">// Complex models: low bias, high variance (overfitting)</span>
+      <div class="fn">The optimal model minimises total error. For credit (small data, high stakes), the bias-variance frontier often favours simpler models with interpretable outputs.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Bias-Variance Explorer</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Complexity</em> Model capacity</span><input type="range" id="n_complexity36" min="1" max="100" step="1" value="30" oninput="n_calcDL()"><span class="sv" id="n_complexity36v">30</span></div>
+        <div class="sr"><span class="sl"><em>Training Data</em> Sample size</span><input type="range" id="n_data36" min="100" max="100000" step="100" value="5000" oninput="n_calcDL()"><span class="sv" id="n_data36v">5,000</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Bias<sup>2</sup></div><div class="mv" id="n_bias36">&mdash;</div></div>
+          <div class="met"><div class="ml">Variance</div><div class="mv" id="n_var36">&mdash;</div></div>
+          <div class="met"><div class="ml">Total Error</div><div class="mv vgo" id="n_total36">&mdash;</div></div>
+          <div class="met"><div class="ml">Optimal Zone</div><div class="mv" id="n_opt36">&mdash;</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c36" height="200"></canvas></div>
+      </div>
+    </div>
+
+    <div class="callout warn"><strong>SR 11-7 requirements:</strong> US bank supervisory guidance requires that models used for credit decisions have &ldquo;sound development, implementation, and use.&rdquo; Black-box models fail the conceptual soundness test. The practical path: use deep learning as a challenger model alongside an interpretable champion. ALPHA uses this dual-model architecture.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(35)">&larr; Prev</button><button class="btn primary" onclick="nav(37)">Next: Kessler Cascade &rarr;</button></div>
+</div>
+
+<!-- ═══ MODULE 38: Kessler Cascade Modelling ═══ -->
+<div class="mod" id="p37">
+  <div class="hero"><div class="hero-tag">Module 38 // Frontier</div><div class="hero-title">Kessler <span>Cascade</span> Modelling</div><div class="hero-sub">Debris density as a credit factor. When collisions breed collisions, every asset in an orbital shell shares cascade risk. This is the space-specific frontier &mdash; SFIS is building first-principles models.</div></div>
+  <div class="body">
+    <p>The Kessler syndrome describes a cascade where orbital debris from one collision increases the probability of subsequent collisions, creating a self-reinforcing chain reaction. For credit risk, this means the assets in a congested orbital shell are correlated not just through market factors but through shared physical destruction risk.</p>
+
+    <div class="formula">
+      <div class="fl">Cascade Probability Model</div>
+      P<sub>collision</sub>(t) = 1 &minus; exp(&minus;&lambda; &times; D(t) &times; &sigma; &times; v<sub>rel</sub>)<br>
+      D(t+1) = D(t) + &Delta;D(t) &times; P<sub>collision</sub>(t) <span class="c">// debris grows after each collision</span><br>
+      <span class="c">// &lambda;: spatial density factor, D(t): debris count, &sigma;: cross-section, v_rel: relative velocity</span>
+      <div class="fn">Each collision creates 10&ndash;1000+ trackable fragments. These fragments increase the collision rate for all remaining assets in the shell. The feedback loop is the cascade.</div>
+    </div>
+
+    <div class="widget">
+      <div class="wh"><div class="wd"></div><div class="wt">Kessler Cascade Simulator</div></div>
+      <div class="wb">
+        <div class="sr"><span class="sl"><em>Initial Debris</em> Objects in shell</span><input type="range" id="n_debris37" min="100" max="10000" step="100" value="2000" oninput="n_calcKessler()"><span class="sv" id="n_debris37v">2,000</span></div>
+        <div class="sr"><span class="sl"><em>Collision Prob</em> Base annual rate</span><input type="range" id="n_collprob37" min="0.001" max="0.05" step="0.001" value="0.005" oninput="n_calcKessler()"><span class="sv" id="n_collprob37v">0.50%</span></div>
+        <div class="sr"><span class="sl"><em>Assets in Shell</em> Satellites at risk</span><input type="range" id="n_assets37" min="10" max="500" step="10" value="100" oninput="n_calcKessler()"><span class="sv" id="n_assets37v">100</span></div>
+        <div class="sr"><span class="sl"><em>Fragments/Event</em></span><input type="range" id="n_frag37" min="10" max="500" step="10" value="100" oninput="n_calcKessler()"><span class="sv" id="n_frag37v">100</span></div>
+        <div class="mets m4">
+          <div class="met"><div class="ml">Pre-Cascade VaR</div><div class="mv" id="n_prevar37">&mdash;</div><div class="ms">Standalone risk</div></div>
+          <div class="met"><div class="ml">Post-Cascade VaR</div><div class="mv vhi" id="n_postvar37">&mdash;</div><div class="ms">With cascade</div></div>
+          <div class="met"><div class="ml">Correlation Multiplier</div><div class="mv vgo" id="n_corrmult37">&mdash;</div></div>
+          <div class="met"><div class="ml">Expected Losses</div><div class="mv vmi" id="n_exploss37">&mdash;</div><div class="ms">Assets destroyed (20yr)</div></div>
+        </div>
+        <div class="cw"><canvas id="n_c37" height="220"></canvas></div>
+      </div>
+    </div>
+
+    <div class="callout red"><strong>No published methodology exists.</strong> Kessler cascade modelling for credit risk is genuinely novel. ESA and NASA model debris propagation for mission safety, not financial risk. SFIS is building the first-principles framework that translates debris density, collision probability, and cascade dynamics into portfolio-level credit risk measures. This is the unique analytical contribution of the platform &mdash; the reason the credit output cannot be replicated by any existing model.</div>
+  </div>
+  <div class="mfooter"><button class="btn" onclick="nav(36)">&larr; Prev</button><button class="btn" disabled>All Modules Complete</button></div>
+</div>
 </div><!-- /content -->
 </div><!-- /layout -->
 <script>
@@ -1581,16 +2002,19 @@ function nav(i){
     if(j===i)b.classList.add('active');
     else if(visited.has(j))b.classList.add('visited');
   });
-  _('pctLbl').textContent=Math.round(visited.size/28*100)+'%';
-  _('pfill').style.width=Math.round(visited.size/28*100)+'%';
-  _('modCtr').textContent=String(i+1).padStart(2,'0')+' / 28';
+  _('pctLbl').textContent=Math.round(visited.size/38*100)+'%';
+  _('pfill').style.width=Math.round(visited.size/38*100)+'%';
+  _('modCtr').textContent=String(i+1).padStart(2,'0')+' / 38';
   document.querySelector('.content').scrollTop=0;
   const inits=[null,m1calc,m2calc,m3calc,m4calc,m5calc,m6calc,m7calc,m8calc,m9calc,m10calc,m11calc,
     b_tab0calc,b_tab1calc,b_tab2calc,()=>{b_tab3calc();b_runSeq3();},
     ()=>{b_runMCMC();b_drawACF();b_drawRhat();},
     b_tab5calc,()=>{b_tab6calc();b_tab6shap();},b_initSigmaFactors,
     null,a_runMC,a_drawCopulas,()=>{a_runStress();a_runReverse();},
-    a_calcCVA,a_calcIFRS,a_drawROC,()=>{a_calcCDS();a_calcDSCR();}];
+    a_calcCVA,a_calcIFRS,a_drawROC,()=>{a_calcCDS();a_calcDSCR();},
+    n_calcBasel,n_calcMigration,n_calcHHI,
+    n_calcWWR,n_calcEuler,n_calcCRT,
+    n_calcClimate,n_calcNetwork,n_calcDL,n_calcKessler];
   if(inits[i])setTimeout(inits[i],80);
 }
 
@@ -2882,6 +3306,731 @@ function a_calcDSCR(){
   }
 }
 
+
+
+
+// ═══ NEW MODULE FUNCTIONS (p28-p37) ═══
+
+// ── n_calcBasel (p28) ──
+function n_calcBasel(){
+  var pd=+_('n_pd28').value/100;
+  var lgd=+_('n_lgd28').value/100;
+  var ead=+_('n_ead28').value;
+  var R=+_('n_R28').value;
+  _('n_pd28v').textContent=(pd*100).toFixed(2)+'%';
+  _('n_lgd28v').textContent=(lgd*100).toFixed(0)+'%';
+  _('n_ead28v').textContent='$'+ead+'M';
+  _('n_R28v').textContent=R.toFixed(2);
+  var t1=Math.pow(1-R,-0.5)*nppf(pd);
+  var t2=Math.pow(R/(1-R),0.5)*nppf(0.999);
+  var K=lgd*(ncdf(t1+t2)-pd);
+  K=Math.max(K,0);
+  var rwa=K*12.5*ead;
+  var cap=rwa*0.08;
+  var saRW=pd<0.5?0.5:pd<3?0.75:1.0;
+  var saRWA=saRW*ead;
+  var floor=saRWA*0.725*0.08;
+  setM('n_k28',(K*100).toFixed(2)+'%','vgo');
+  setM('n_rwa28','$'+rwa.toFixed(1)+'M',rc(rwa/ead*100,50,100));
+  setM('n_cap28','$'+cap.toFixed(2)+'M',rc(cap/ead*100,4,8));
+  setM('n_floor28','$'+floor.toFixed(2)+'M');
+  n_drawBaselK();
+}
+function n_drawBaselK(){
+  var ctx=getC('n_c28',180);if(!ctx)return;
+  var W=ctx.canvas.width,H=180,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var R=+_('n_R28').value;
+  var lgd=+_('n_lgd28').value/100;
+  var corrs=[0.05,0.15,0.30,0.50];
+  var colors=['rgba(29,122,80,0.8)','rgba(200,168,75,0.9)','rgba(241,196,15,0.7)','rgba(192,48,48,0.8)'];
+  var maxK=0.25;
+  ctx.font='8px monospace';
+  // axes
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.stroke();
+  ctx.fillStyle='rgba(85,96,112,0.8)';
+  ctx.fillText('PD',W/2,H-4);
+  ctx.fillText('K',4,H/2);
+  for(var ci=0;ci<corrs.length;ci++){
+    var rr=corrs[ci];
+    ctx.beginPath();
+    for(var i=1;i<=100;i++){
+      var p=i/100*0.2;
+      var t1b=Math.pow(1-rr,-0.5)*nppf(p);
+      var t2b=Math.pow(rr/(1-rr),0.5)*nppf(0.999);
+      var kv=lgd*(ncdf(t1b+t2b)-p);
+      kv=Math.max(kv,0);
+      var px=pad+i/100*(W-2*pad);
+      var py=H-pad-(kv/maxK)*(H-2*pad);
+      i===1?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.strokeStyle=colors[ci];ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle=colors[ci];ctx.fillText('R='+corrs[ci],W-pad-50,pad+14+ci*12);
+  }
+  // x ticks
+  ctx.fillStyle='rgba(85,96,112,0.7)';
+  [0,5,10,15,20].forEach(function(v){
+    var x=pad+v/20*(W-2*pad);
+    ctx.fillText(v+'%',x-8,H-pad+12);
+  });
+}
+
+// ── n_calcMigration (p29) ──
+function n_calcMigration(){
+  var T=+_('n_horizon29').value;
+  var stress=+_('n_stress29').value;
+  _('n_horizon29v').textContent=T+' yr';
+  _('n_stress29v').textContent=stress.toFixed(1)+'x';
+  // Base 1-year transition matrix (7 grades: AAA,AA,A,BBB,BB,B,CCC+D)
+  var grades=['AAA','AA','A','BBB','BB','B','CCC','D'];
+  var M=[
+    [0.9081,0.0833,0.0068,0.0006,0.0012,0.0000,0.0000,0.0000],
+    [0.0070,0.9065,0.0779,0.0064,0.0006,0.0014,0.0002,0.0000],
+    [0.0009,0.0227,0.9105,0.0552,0.0074,0.0026,0.0001,0.0006],
+    [0.0002,0.0033,0.0595,0.8693,0.0530,0.0107,0.0012,0.0028],
+    [0.0003,0.0014,0.0067,0.0773,0.8053,0.0884,0.0100,0.0106],
+    [0.0000,0.0011,0.0024,0.0043,0.0648,0.8346,0.0407,0.0521],
+    [0.0022,0.0000,0.0022,0.0130,0.0238,0.1124,0.6486,0.1978],
+    [0,0,0,0,0,0,0,1]
+  ];
+  // Apply stress multiplier to off-diagonal downgrade elements
+  for(var i=0;i<7;i++){
+    for(var j=i+1;j<8;j++){
+      M[i][j]*=stress;
+    }
+    // renormalize row
+    var s=0;for(var j=0;j<8;j++)s+=M[i][j];
+    for(var j=0;j<8;j++)M[i][j]/=s;
+  }
+  // Matrix power: M^T
+  var result=n_matPow(M,T);
+  // Display table
+  var html='<table class="tbl"><tr><th>From \\ To</th>';
+  for(var j=0;j<8;j++)html+='<th>'+grades[j]+'</th>';
+  html+='</tr>';
+  for(var i=0;i<8;i++){
+    html+='<tr><td class="tg">'+grades[i]+'</td>';
+    for(var j=0;j<8;j++){
+      var v=result[i][j]*100;
+      var cls=i===j?'tg':j===7?'tr':'tm';
+      html+='<td class="'+cls+'">'+(v<0.01&&v>0?'<0.01':v.toFixed(2))+'%</td>';
+    }
+    html+='</tr>';
+  }
+  html+='</table>';
+  _('n_matrix29').innerHTML=html;
+  // BBB metrics (row 3)
+  setM('n_bbb_def29',(result[3][7]*100).toFixed(2)+'%','vhi');
+  var dn=0;for(var j=4;j<8;j++)dn+=result[3][j];
+  setM('n_bbb_dn29',(dn*100).toFixed(2)+'%','vmi');
+  var up=0;for(var j=0;j<3;j++)up+=result[3][j];
+  setM('n_bbb_up29',(up*100).toFixed(2)+'%','vlo');
+  setM('n_bbb_st29',(result[3][3]*100).toFixed(2)+'%');
+  n_drawMigration(result);
+}
+function n_matMul(A,B){
+  var n=A.length,C=[];
+  for(var i=0;i<n;i++){C[i]=[];for(var j=0;j<n;j++){var s=0;for(var k=0;k<n;k++)s+=A[i][k]*B[k][j];C[i][j]=s;}}
+  return C;
+}
+function n_matPow(M,p){
+  var n=M.length,R=[];
+  for(var i=0;i<n;i++){R[i]=[];for(var j=0;j<n;j++)R[i][j]=i===j?1:0;}
+  var base=M.map(function(r){return r.slice();});
+  p=Math.round(p);
+  while(p>0){if(p%2===1)R=n_matMul(R,base);base=n_matMul(base,base);p=Math.floor(p/2);}
+  return R;
+}
+function n_drawMigration(M){
+  var ctx=getC('n_c29',200);if(!ctx)return;
+  var W=ctx.canvas.width,H=200,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var grades=['AAA','AA','A','BBB','BB','B','CCC','D'];
+  var n=8,cellW=(W-2*pad)/n,cellH=(H-2*pad)/n;
+  for(var i=0;i<n;i++){
+    for(var j=0;j<n;j++){
+      var v=M[i][j];
+      var alpha=Math.min(v*3,1);
+      var r,g,b;
+      if(i===j){r=200;g=168;b=75;}
+      else if(j>i){r=192;g=48;b=48;}
+      else{r=29;g=122;b=80;}
+      ctx.fillStyle='rgba('+r+','+g+','+b+','+alpha.toFixed(2)+')';
+      ctx.fillRect(pad+j*cellW,pad+i*cellH,cellW-1,cellH-1);
+      if(v>0.01){
+        ctx.fillStyle='rgba(200,210,230,0.8)';ctx.font='8px monospace';
+        ctx.fillText((v*100).toFixed(0),pad+j*cellW+cellW/2-8,pad+i*cellH+cellH/2+3);
+      }
+    }
+  }
+  ctx.fillStyle='rgba(85,96,112,0.8)';ctx.font='8px monospace';
+  for(var i=0;i<n;i++){
+    ctx.fillText(grades[i],pad+i*cellW+2,pad-4);
+    ctx.fillText(grades[i],2,pad+i*cellH+cellH/2+3);
+  }
+}
+
+// ── n_calcHHI (p30) ──
+function n_calcHHI(){
+  var N=+_('n_nexpo30').value;
+  var top5=+_('n_top530').value/100;
+  var top1=+_('n_top130').value/100;
+  _('n_nexpo30v').textContent=N;
+  _('n_top530v').textContent=(top5*100).toFixed(0)+'%';
+  _('n_top130v').textContent=(top1*100).toFixed(0)+'%';
+  // Build a stylised weight vector
+  var weights=[];
+  weights.push(top1);
+  var rem4=(top5-top1)/4;
+  for(var i=0;i<4;i++)weights.push(Math.max(rem4,0.001));
+  var rest=Math.max(1-top5,0);
+  var nRest=Math.max(N-5,1);
+  for(var i=0;i<nRest;i++)weights.push(rest/nRest);
+  // Normalize
+  var ws=0;for(var i=0;i<weights.length;i++)ws+=weights[i];
+  for(var i=0;i<weights.length;i++)weights[i]/=ws;
+  // HHI
+  var hhi=0;for(var i=0;i<weights.length;i++)hhi+=weights[i]*weights[i];
+  var neff=1/hhi;
+  var lvl=hhi>0.18?'HIGH':hhi>0.10?'MODERATE':'LOW';
+  var ga=hhi*0.04;// simplified granularity adjustment
+  setM('n_hhi30',hhi.toFixed(4),'vgo');
+  setM('n_neff30',neff.toFixed(1));
+  setM('n_conc30',lvl,hhi>0.18?'vhi':hhi>0.10?'vmi':'vlo');
+  setM('n_ga30',(ga*100).toFixed(2)+'%');
+  n_drawLorenz(weights);
+}
+function n_drawLorenz(weights){
+  var ctx=getC('n_c30',180);if(!ctx)return;
+  var W=ctx.canvas.width,H=180,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var sorted=weights.slice().sort(function(a,b){return a-b;});
+  var n=sorted.length;
+  var cumW=[0],cumE=[0],total=0;
+  for(var i=0;i<n;i++)total+=sorted[i];
+  var runE=0;
+  for(var i=0;i<n;i++){
+    runE+=sorted[i];
+    cumW.push((i+1)/n);
+    cumE.push(runE/total);
+  }
+  var tx=function(v){return pad+v*(W-2*pad);};
+  var ty=function(v){return H-pad-v*(H-2*pad);};
+  // Perfect equality line
+  ctx.beginPath();ctx.moveTo(tx(0),ty(0));ctx.lineTo(tx(1),ty(1));
+  ctx.strokeStyle='rgba(29,122,80,0.5)';ctx.lineWidth=1;ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+  // Lorenz curve
+  ctx.beginPath();
+  for(var i=0;i<cumW.length;i++){
+    i===0?ctx.moveTo(tx(cumW[i]),ty(cumE[i])):ctx.lineTo(tx(cumW[i]),ty(cumE[i]));
+  }
+  ctx.strokeStyle='rgba(200,168,75,0.9)';ctx.lineWidth=2;ctx.stroke();
+  // Fill area
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(0));
+  for(var i=0;i<cumW.length;i++)ctx.lineTo(tx(cumW[i]),ty(cumE[i]));
+  ctx.lineTo(tx(1),ty(1));ctx.closePath();
+  ctx.fillStyle='rgba(200,168,75,0.1)';ctx.fill();
+  // Labels
+  ctx.fillStyle='rgba(85,96,112,0.8)';ctx.font='8px monospace';
+  ctx.fillText('Cumulative % of Exposures',W/2-50,H-4);
+  ctx.fillText('Lorenz',tx(0.3),ty(0.1));
+  ctx.fillStyle='rgba(29,122,80,0.7)';ctx.fillText('Perfect Equality',tx(0.5),ty(0.55));
+  // Axes
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.stroke();
+}
+
+// ── n_calcWWR (p31) ──
+function n_calcWWR(){
+  var expo=+_('n_expo31').value;
+  var pd=+_('n_pd31').value/100;
+  var lgd=+_('n_lgd31').value/100;
+  var rho=+_('n_rho31').value;
+  _('n_expo31v').textContent='$'+expo+'M';
+  _('n_pd31v').textContent=(pd*100).toFixed(1)+'%';
+  _('n_lgd31v').textContent=(lgd*100).toFixed(0)+'%';
+  _('n_rho31v').textContent=rho.toFixed(2);
+  var stdCVA=expo*pd*lgd;
+  var alpha=rho*2.5;// simplified WWR multiplier
+  var wwrCVA=stdCVA*(1+alpha);
+  var add=wwrCVA-stdCVA;
+  setM('n_cva_std31','$'+stdCVA.toFixed(2)+'M');
+  setM('n_cva_wwr31','$'+wwrCVA.toFixed(2)+'M','vhi');
+  setM('n_wwr_mult31',(1+alpha).toFixed(2)+'x','vgo');
+  setM('n_wwr_add31','$'+add.toFixed(2)+'M','vmi');
+  n_drawWWR(expo,pd,rho);
+}
+function n_drawWWR(expo,pd,rho){
+  var ctx=getC('n_c31',180);if(!ctx)return;
+  var W=ctx.canvas.width,H=180,pad=30;
+  ctx.clearRect(0,0,W,H);
+  // Scatter: credit quality (x) vs exposure (y), showing positive correlation
+  var N=80;
+  ctx.fillStyle='rgba(85,96,112,0.8)';ctx.font='8px monospace';
+  ctx.fillText('Credit Quality (worse ->)',W/2-40,H-4);
+  ctx.fillText('Exposure',4,H/2);
+  for(var i=0;i<N;i++){
+    var cq=Math.random();
+    var base=0.3+0.4*Math.random();
+    var expoF=base+rho*(cq-0.5)*1.2+(Math.random()-0.5)*0.3*(1-rho);
+    expoF=Math.max(0.05,Math.min(0.95,expoF));
+    var px=pad+cq*(W-2*pad);
+    var py=H-pad-expoF*(H-2*pad);
+    ctx.beginPath();ctx.arc(px,py,3,0,Math.PI*2);
+    ctx.fillStyle=cq>0.7?'rgba(192,48,48,0.6)':'rgba(200,168,75,0.5)';
+    ctx.fill();
+  }
+  // Trend line
+  if(rho>0.05){
+    ctx.beginPath();
+    ctx.moveTo(pad,H-pad-(0.3+rho*(-0.5)*1.2)*(H-2*pad));
+    ctx.lineTo(W-pad,H-pad-(0.3+rho*0.5*1.2)*(H-2*pad));
+    ctx.strokeStyle='rgba(192,48,48,0.6)';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+  }
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.stroke();
+}
+
+// ── n_calcEuler (p32) ──
+function n_calcEuler(){
+  var wA=+_('n_wA32').value/100;
+  var wB=+_('n_wB32').value/100;
+  var wC=+_('n_wC32').value/100;
+  var wD=+_('n_wD32').value/100;
+  var wE=+_('n_wE32').value/100;
+  _('n_wA32v').textContent=(wA*100).toFixed(0)+'%';
+  _('n_wB32v').textContent=(wB*100).toFixed(0)+'%';
+  _('n_wC32v').textContent=(wC*100).toFixed(0)+'%';
+  _('n_wD32v').textContent=(wD*100).toFixed(0)+'%';
+  _('n_wE32v').textContent=(wE*100).toFixed(0)+'%';
+  var ws=[wA,wB,wC,wD,wE];
+  var pds=[0.02,0.035,0.05,0.08,0.12];// fixed PDs per asset
+  var names=['A (Corp IG)','B (Corp HY)','C (Infra)','D (Satellite)','E (EM Sov)'];
+  var spreads=[0.015,0.04,0.025,0.06,0.035];
+  var lgds=[0.4,0.6,0.3,0.8,0.5];
+  var total=0;for(var i=0;i<5;i++)total+=ws[i];
+  for(var i=0;i<5;i++)ws[i]/=total;
+  // Standalone EC per asset (simplified)
+  var standEC=[];
+  for(var i=0;i<5;i++){
+    var var99=Math.min(pds[i]*(1+4*Math.sqrt(0.15)),0.5);
+    standEC.push((var99-pds[i])*lgds[i]*ws[i]*100);
+  }
+  var sumStand=0;for(var i=0;i<5;i++)sumStand+=standEC[i];
+  // Diversified EC (apply diversification factor ~0.6-0.85)
+  var divFactor=0.65+0.2*Math.max(ws[0],ws[1],ws[2],ws[3],ws[4]);
+  var divEC=sumStand*divFactor;
+  var benefit=1-divFactor;
+  // Euler allocation (proportional to standalone * correlation contribution)
+  var euler=[];
+  for(var i=0;i<5;i++){euler.push(standEC[i]*divFactor);}
+  setM('n_ec_stand32',sumStand.toFixed(2)+'%');
+  setM('n_ec_div32',divEC.toFixed(2)+'%','vgo');
+  setM('n_ec_ben32',(benefit*100).toFixed(1)+'%','vlo');
+  // RAROC table
+  var html='<table class="tbl"><tr><th>Asset</th><th>Weight</th><th>Standalone EC</th><th>Euler EC</th><th>RAROC</th></tr>';
+  for(var i=0;i<5;i++){
+    var el=pds[i]*lgds[i]*ws[i];
+    var raroc=(spreads[i]*ws[i]-el)/Math.max(euler[i]/100,0.0001)*100;
+    var rcls=raroc>15?'tg':raroc>10?'tm':'tr';
+    html+='<tr><td>'+names[i]+'</td><td class="tm">'+(ws[i]*100).toFixed(1)+'%</td>';
+    html+='<td class="tm">'+standEC[i].toFixed(2)+'%</td>';
+    html+='<td class="tg">'+euler[i].toFixed(2)+'%</td>';
+    html+='<td class="'+rcls+'">'+raroc.toFixed(1)+'%</td></tr>';
+  }
+  html+='</table>';
+  _('n_raroc_tbl32').innerHTML=html;
+  n_drawEuler(ws,standEC,euler,names);
+}
+function n_drawEuler(ws,standEC,euler,names){
+  var ctx=getC('n_c32',200);if(!ctx)return;
+  var W=ctx.canvas.width,H=200,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var maxV=0;for(var i=0;i<5;i++)maxV=Math.max(maxV,standEC[i]);
+  maxV*=1.3;
+  var bw=(W-2*pad)/5*0.35;
+  var colors=['rgba(59,110,165,0.7)','rgba(200,168,75,0.8)'];
+  ctx.font='8px monospace';
+  for(var i=0;i<5;i++){
+    var x=pad+i*(W-2*pad)/5+(W-2*pad)/10-bw;
+    var h1=standEC[i]/maxV*(H-2*pad);
+    var h2=euler[i]/maxV*(H-2*pad);
+    ctx.fillStyle=colors[0];ctx.fillRect(x,H-pad-h1,bw,h1);
+    ctx.fillStyle=colors[1];ctx.fillRect(x+bw+2,H-pad-h2,bw,h2);
+    ctx.fillStyle='rgba(200,210,230,0.7)';
+    ctx.fillText(names[i].split(' ')[0],x,H-pad+12);
+  }
+  ctx.fillStyle='rgba(59,110,165,0.8)';ctx.fillText('Standalone',W-pad-100,pad+10);
+  ctx.fillStyle='rgba(200,168,75,0.9)';ctx.fillText('Euler',W-pad-100,pad+22);
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+}
+
+// ── n_calcCRT (p33) ──
+function n_calcCRT(){
+  var poolPD=+_('n_poolpd33').value/100;
+  var poolLGD=+_('n_poollgd33').value/100;
+  var A=+_('n_attach33').value/100;
+  var D=+_('n_detach33').value/100;
+  _('n_poolpd33v').textContent=(poolPD*100).toFixed(1)+'%';
+  _('n_poollgd33v').textContent=(poolLGD*100).toFixed(0)+'%';
+  _('n_attach33v').textContent=(A*100).toFixed(1)+'%';
+  _('n_detach33v').textContent=(D*100).toFixed(0)+'%';
+  if(D<=A)D=A+0.01;
+  var poolEL=poolPD*poolLGD;
+  var trancheEL=Math.max(0,Math.min(poolEL,D)-A)/(D-A);
+  var thickness=D-A;
+  var ce=A;
+  setM('n_poolel33',(poolEL*100).toFixed(2)+'%');
+  setM('n_trancheel33',(trancheEL*100).toFixed(2)+'%','vhi');
+  setM('n_thickness33',(thickness*100).toFixed(1)+'%','vgo');
+  setM('n_ce33',(ce*100).toFixed(1)+'%','vlo');
+  n_drawCRT(poolEL,A,D);
+}
+function n_drawCRT(poolEL,A,D){
+  var ctx=getC('n_c33',200);if(!ctx)return;
+  var W=ctx.canvas.width,H=200,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var barW=W-2*pad,barH=40;
+  // Draw waterfall
+  var tranches=[
+    {lbl:'Equity (First Loss)',a:0,d:A,col:'rgba(192,48,48,0.7)'},
+    {lbl:'Mezzanine',a:A,d:D,col:'rgba(200,168,75,0.7)'},
+    {lbl:'Senior',a:D,d:1.0,col:'rgba(29,122,80,0.7)'}
+  ];
+  var y=pad+20;
+  ctx.font='9px monospace';
+  for(var i=0;i<tranches.length;i++){
+    var t=tranches[i];
+    var x=pad+t.a*barW;
+    var w=(t.d-t.a)*barW;
+    ctx.fillStyle=t.col;ctx.fillRect(x,y,w,barH);
+    if(w>30){
+      ctx.fillStyle='rgba(200,210,230,0.9)';ctx.font='9px monospace';
+      ctx.fillText(t.lbl,x+4,y+15);
+      ctx.fillText((t.a*100).toFixed(0)+'%-'+(t.d*100).toFixed(0)+'%',x+4,y+28);
+    }
+    y+=barH+4;
+  }
+  // Pool EL line
+  if(poolEL<1){
+    var elX=pad+poolEL*barW;
+    ctx.beginPath();ctx.moveTo(elX,pad);ctx.lineTo(elX,H-pad);
+    ctx.strokeStyle='rgba(200,168,75,0.8)';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='rgba(200,168,75,0.8)';ctx.font='9px monospace';
+    ctx.fillText('Pool EL: '+(poolEL*100).toFixed(1)+'%',elX+4,pad+10);
+  }
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.fillStyle='rgba(85,96,112,0.7)';ctx.font='8px monospace';
+  [0,25,50,75,100].forEach(function(v){
+    ctx.fillText(v+'%',pad+v/100*barW-8,H-pad+12);
+  });
+}
+
+// ── n_calcClimate (p34) ──
+function n_calcClimate(){
+  var basePD=+_('n_basepd34').value;
+  var carbon=+_('n_carbon34').value;
+  var phys=+_('n_phys34').value;
+  var trans=+_('n_trans34').value/100;
+  _('n_basepd34v').textContent=basePD.toFixed(1)+'%';
+  _('n_carbon34v').textContent='$'+carbon;
+  _('n_phys34v').textContent=phys.toFixed(1)+'x';
+  _('n_trans34v').textContent=(trans*100).toFixed(0)+'%';
+  var transRisk=carbon/250*trans;
+  var adjPD=basePD*phys*(1+transRisk);
+  var uplift=((adjPD/basePD)-1)*100;
+  setM('n_pd_base34',basePD.toFixed(2)+'%');
+  setM('n_pd_adj34',adjPD.toFixed(2)+'%','vhi');
+  setM('n_pd_uplift34','+'+uplift.toFixed(1)+'%','vmi');
+  n_drawClimate(basePD,carbon,phys,trans);
+}
+function n_drawClimate(basePD,carbon,phys,trans){
+  var ctx=getC('n_c34',180);if(!ctx)return;
+  var W=ctx.canvas.width,H=180,pad=30;
+  ctx.clearRect(0,0,W,H);
+  // 3 scenario bars
+  var scenarios=[
+    {lbl:'Orderly',carbon:75,phys:1.1,trans:0.6},
+    {lbl:'Disorderly',carbon:150,phys:1.5,trans:0.8},
+    {lbl:'Hot House',carbon:25,phys:2.5,trans:0.2}
+  ];
+  var barW=(W-2*pad)/4;
+  var maxPD=basePD*3.5;
+  // Base bar
+  var bh=basePD/maxPD*(H-2*pad);
+  ctx.fillStyle='rgba(59,110,165,0.7)';ctx.fillRect(pad+10,H-pad-bh,barW-20,bh);
+  ctx.fillStyle='rgba(200,210,230,0.8)';ctx.font='9px monospace';
+  ctx.fillText('Base',pad+15,H-pad+12);
+  ctx.fillText(basePD.toFixed(1)+'%',pad+15,H-pad-bh-4);
+  for(var i=0;i<3;i++){
+    var s=scenarios[i];
+    var adjPD2=basePD*s.phys*(1+s.carbon/250*s.trans);
+    var h=adjPD2/maxPD*(H-2*pad);
+    var col=i===0?'rgba(29,122,80,0.7)':i===1?'rgba(200,168,75,0.7)':'rgba(192,48,48,0.7)';
+    var x=pad+(i+1)*barW+10;
+    ctx.fillStyle=col;ctx.fillRect(x,H-pad-h,barW-20,h);
+    ctx.fillStyle='rgba(200,210,230,0.8)';
+    ctx.fillText(s.lbl,x+2,H-pad+12);
+    ctx.fillText(adjPD2.toFixed(1)+'%',x+2,H-pad-h-4);
+  }
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+}
+
+// ── n_calcNetwork (p35) ──
+function n_calcNetwork(){
+  var link=+_('n_link35').value;
+  var shock=+_('n_shock35').value;
+  var density=+_('n_density35').value;
+  _('n_link35v').textContent=link.toFixed(2);
+  var nodeNames=['A','B','C','D','E'];
+  _('n_shock35v').textContent='Node '+nodeNames[shock];
+  _('n_density35v').textContent=(density*100).toFixed(0)+'%';
+  // Build adjacency matrix
+  var n=5;
+  var W_mat=[];
+  for(var i=0;i<n;i++){
+    W_mat[i]=[];
+    for(var j=0;j<n;j++){
+      if(i===j)W_mat[i][j]=0;
+      else{
+        var seed=(i*7+j*13)%17/17;
+        W_mat[i][j]=seed<density?link*(0.5+seed):0;
+      }
+    }
+  }
+  // DebtRank simulation
+  var h=[];for(var i=0;i<n;i++)h[i]=0;
+  h[shock]=1;
+  var active=[];for(var i=0;i<n;i++)active[i]=true;
+  active[shock]=false;
+  var directLoss=1/n;
+  for(var step=0;step<10;step++){
+    var dh=[];for(var i=0;i<n;i++)dh[i]=0;
+    for(var i=0;i<n;i++){
+      if(!active[i])continue;
+      for(var j=0;j<n;j++){
+        if(i===j)continue;
+        dh[i]+=W_mat[j][i]*h[j];// note: incoming exposure
+      }
+    }
+    var changed=false;
+    for(var i=0;i<n;i++){
+      if(!active[i])continue;
+      var newH=Math.min(1,h[i]+dh[i]);
+      if(newH!==h[i])changed=true;
+      if(newH>=0.99)active[i]=false;
+      h[i]=newH;
+    }
+    if(!changed)break;
+  }
+  var cascadeLoss=0,defaults=0;
+  for(var i=0;i<n;i++){cascadeLoss+=h[i]/n;if(h[i]>0.5)defaults++;}
+  var contagionMult=cascadeLoss/Math.max(directLoss,0.001);
+  setM('n_direct35',(directLoss*100).toFixed(1)+'%');
+  setM('n_cascade35',(cascadeLoss*100).toFixed(1)+'%','vhi');
+  setM('n_contagion35',contagionMult.toFixed(2)+'x','vgo');
+  setM('n_defaults35',defaults+' / '+n,'vmi');
+  n_drawNetwork(h,W_mat,shock);
+}
+function n_drawNetwork(h,W_mat,shock){
+  var ctx=getC('n_c35',220);if(!ctx)return;
+  var W=ctx.canvas.width,H=220,pad=40;
+  ctx.clearRect(0,0,W,H);
+  var n=5;
+  var names=['A','B','C','D','E'];
+  var cx=W/2,cy=H/2,r=Math.min(W,H)/2-pad;
+  var pos=[];
+  for(var i=0;i<n;i++){
+    var angle=i/n*Math.PI*2-Math.PI/2;
+    pos.push({x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)});
+  }
+  // Draw edges
+  for(var i=0;i<n;i++){
+    for(var j=i+1;j<n;j++){
+      if(W_mat[i][j]>0||W_mat[j][i]>0){
+        var strength=Math.max(W_mat[i][j],W_mat[j][i]);
+        ctx.beginPath();ctx.moveTo(pos[i].x,pos[i].y);ctx.lineTo(pos[j].x,pos[j].y);
+        ctx.strokeStyle='rgba(200,168,75,'+Math.min(strength,0.6).toFixed(2)+')';
+        ctx.lineWidth=strength*5;ctx.stroke();
+      }
+    }
+  }
+  // Draw nodes
+  for(var i=0;i<n;i++){
+    var nodeR=20;
+    ctx.beginPath();ctx.arc(pos[i].x,pos[i].y,nodeR,0,Math.PI*2);
+    if(h[i]>0.5)ctx.fillStyle='rgba(192,48,48,0.8)';
+    else if(h[i]>0.1)ctx.fillStyle='rgba(200,168,75,0.7)';
+    else ctx.fillStyle='rgba(29,122,80,0.6)';
+    ctx.fill();
+    ctx.strokeStyle='rgba(200,210,230,0.3)';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='rgba(200,210,230,0.9)';ctx.font='bold 11px monospace';
+    ctx.fillText(names[i],pos[i].x-4,pos[i].y+4);
+    ctx.font='8px monospace';
+    ctx.fillText((h[i]*100).toFixed(0)+'%',pos[i].x-10,pos[i].y+16);
+  }
+}
+
+// ── n_calcDL (p36) ──
+function n_calcDL(){
+  var complexity=+_('n_complexity36').value;
+  var dataSize=+_('n_data36').value;
+  _('n_complexity36v').textContent=complexity;
+  _('n_data36v').textContent=dataSize>=1000?(dataSize/1000).toFixed(0)+',000':dataSize;
+  // Bias decreases with complexity, variance increases
+  var bias2=0.15*Math.exp(-complexity/25);
+  var variance=0.01*(complexity/10)/(Math.sqrt(dataSize/1000));
+  var noise=0.03;
+  var total=bias2+variance+noise;
+  var optComplexity=25*Math.log(0.15/(0.01/Math.sqrt(dataSize/1000)))/1;// rough
+  var inZone=Math.abs(complexity-Math.min(Math.max(optComplexity,10),80))<15;
+  setM('n_bias36',bias2.toFixed(4));
+  setM('n_var36',variance.toFixed(4));
+  setM('n_total36',total.toFixed(4),'vgo');
+  setM('n_opt36',inZone?'YES':'NO',inZone?'vlo':'vhi');
+  n_drawDL(dataSize);
+}
+function n_drawDL(dataSize){
+  var ctx=getC('n_c36',200);if(!ctx)return;
+  var W=ctx.canvas.width,H=200,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var maxErr=0.25;
+  var tx=function(c){return pad+c/100*(W-2*pad);};
+  var ty=function(e){return H-pad-e/maxErr*(H-2*pad);};
+  // Bias curve
+  ctx.beginPath();
+  for(var c=1;c<=100;c++){
+    var b=0.15*Math.exp(-c/25);
+    c===1?ctx.moveTo(tx(c),ty(b)):ctx.lineTo(tx(c),ty(b));
+  }
+  ctx.strokeStyle='rgba(59,110,165,0.8)';ctx.lineWidth=2;ctx.stroke();
+  // Variance curve
+  ctx.beginPath();
+  for(var c=1;c<=100;c++){
+    var v=0.01*(c/10)/(Math.sqrt(dataSize/1000));
+    c===1?ctx.moveTo(tx(c),ty(v)):ctx.lineTo(tx(c),ty(v));
+  }
+  ctx.strokeStyle='rgba(192,48,48,0.8)';ctx.lineWidth=2;ctx.stroke();
+  // Total
+  ctx.beginPath();
+  for(var c=1;c<=100;c++){
+    var b=0.15*Math.exp(-c/25);
+    var v=0.01*(c/10)/(Math.sqrt(dataSize/1000));
+    var t=b+v+0.03;
+    c===1?ctx.moveTo(tx(c),ty(t)):ctx.lineTo(tx(c),ty(t));
+  }
+  ctx.strokeStyle='rgba(200,168,75,0.9)';ctx.lineWidth=2;ctx.stroke();
+  // Current position
+  var curC=+_('n_complexity36').value;
+  var curB=0.15*Math.exp(-curC/25);
+  var curV=0.01*(curC/10)/(Math.sqrt(dataSize/1000));
+  var curT=curB+curV+0.03;
+  ctx.beginPath();ctx.arc(tx(curC),ty(curT),5,0,Math.PI*2);
+  ctx.fillStyle='rgba(200,168,75,1)';ctx.fill();
+  // Legend
+  ctx.font='9px monospace';
+  ctx.fillStyle='rgba(59,110,165,0.9)';ctx.fillText('Bias\u00b2',W-pad-80,pad+12);
+  ctx.fillStyle='rgba(192,48,48,0.9)';ctx.fillText('Variance',W-pad-80,pad+24);
+  ctx.fillStyle='rgba(200,168,75,0.9)';ctx.fillText('Total Error',W-pad-80,pad+36);
+  ctx.fillStyle='rgba(85,96,112,0.8)';ctx.font='8px monospace';
+  ctx.fillText('Model Complexity',W/2-30,H-4);
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.stroke();
+}
+
+// ── n_calcKessler (p37) ──
+function n_calcKessler(){
+  var debris=+_('n_debris37').value;
+  var collProb=+_('n_collprob37').value;
+  var assets=+_('n_assets37').value;
+  var fragPerEvent=+_('n_frag37').value;
+  _('n_debris37v').textContent=debris>=1000?(debris/1000).toFixed(0)+',000':debris;
+  _('n_collprob37v').textContent=(collProb*100).toFixed(2)+'%';
+  _('n_assets37v').textContent=assets;
+  _('n_frag37v').textContent=fragPerEvent;
+  // Simulate 20-year cascade
+  var years=20;
+  var dHistory=[debris];
+  var lossHistory=[0];
+  var totalLoss=0;
+  var d=debris;
+  for(var y=0;y<years;y++){
+    var pColl=1-Math.exp(-collProb*d/2000);
+    var nCollisions=0;
+    // Expected collisions (deterministic for display)
+    nCollisions=pColl*d/500;
+    if(nCollisions<0.01)nCollisions=0;
+    var newDebris=nCollisions*fragPerEvent;
+    d+=newDebris;
+    // Asset losses
+    var assetLossProb=1-Math.exp(-collProb*d/5000);
+    var assetsLost=assetLossProb*assets*(1-totalLoss/(assets||1));
+    totalLoss=Math.min(totalLoss+assetsLost,assets);
+    dHistory.push(Math.round(d));
+    lossHistory.push(totalLoss);
+  }
+  // Pre-cascade VaR: simple standalone risk per asset
+  var preVaR=collProb*assets*0.5;// rough
+  var postVaR=totalLoss;
+  var corrMult=postVaR/Math.max(preVaR,0.01);
+  setM('n_prevar37',preVaR.toFixed(1)+' assets','');
+  setM('n_postvar37',postVaR.toFixed(1)+' assets','vhi');
+  setM('n_corrmult37',corrMult.toFixed(1)+'x','vgo');
+  setM('n_exploss37',totalLoss.toFixed(1)+' / '+assets,'vmi');
+  n_drawKessler(dHistory,lossHistory,assets);
+}
+function n_drawKessler(dHistory,lossHistory,assets){
+  var ctx=getC('n_c37',220);if(!ctx)return;
+  var W=ctx.canvas.width,H=220,pad=30;
+  ctx.clearRect(0,0,W,H);
+  var n=dHistory.length;
+  var maxD=Math.max.apply(null,dHistory)*1.1;
+  var maxL=Math.max(Math.max.apply(null,lossHistory)*1.3,1);
+  var tx=function(i){return pad+i/(n-1)*(W-2*pad);};
+  // Debris curve (left axis)
+  ctx.beginPath();
+  for(var i=0;i<n;i++){
+    var y=H-pad-dHistory[i]/maxD*(H-2*pad);
+    i===0?ctx.moveTo(tx(i),y):ctx.lineTo(tx(i),y);
+  }
+  ctx.strokeStyle='rgba(200,168,75,0.9)';ctx.lineWidth=2;ctx.stroke();
+  // Fill under debris
+  ctx.beginPath();ctx.moveTo(tx(0),H-pad);
+  for(var i=0;i<n;i++){
+    var y=H-pad-dHistory[i]/maxD*(H-2*pad);
+    ctx.lineTo(tx(i),y);
+  }
+  ctx.lineTo(tx(n-1),H-pad);ctx.closePath();
+  ctx.fillStyle='rgba(200,168,75,0.08)';ctx.fill();
+  // Loss curve (right axis)
+  ctx.beginPath();
+  for(var i=0;i<n;i++){
+    var y=H-pad-lossHistory[i]/maxL*(H-2*pad);
+    i===0?ctx.moveTo(tx(i),y):ctx.lineTo(tx(i),y);
+  }
+  ctx.strokeStyle='rgba(192,48,48,0.9)';ctx.lineWidth=2;ctx.stroke();
+  // Legend
+  ctx.font='9px monospace';
+  ctx.fillStyle='rgba(200,168,75,0.9)';ctx.fillText('Debris Count',pad+4,pad+12);
+  ctx.fillStyle='rgba(192,48,48,0.9)';ctx.fillText('Cumulative Asset Losses',pad+4,pad+24);
+  ctx.fillStyle='rgba(85,96,112,0.7)';ctx.font='8px monospace';
+  ctx.fillText('Years',W/2-10,H-4);
+  for(var y=0;y<=20;y+=5){
+    ctx.fillText('Y'+y,tx(y)-6,H-pad+12);
+  }
+  ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.stroke();
+}
 
 // ── INIT ──
 setTimeout(m1calc,100);
