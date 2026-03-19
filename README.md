@@ -2,7 +2,7 @@
 
 **Interactive Credit Risk Intelligence Platform**
 
-28 modules covering institutional credit risk methodology — from foundational concepts to advanced quantitative frameworks.
+38 modules covering institutional credit risk methodology — from foundational concepts through Bayesian inference to frontier research.
 
 **[Launch Apogee →](https://mikaumar.github.io/apogee/)**
 
@@ -50,23 +50,44 @@
 27. Model Validation
 28. Credit Derivatives & Sovereign
 
+### VII · Regulatory & Capital
+29. Basel III/IV Capital Rules
+30. Credit Migration Matrices
+31. Concentration Risk
+
+### VIII · Counterparty & Transfer
+32. Wrong-Way Risk
+33. Economic Capital Allocation
+34. Credit Risk Transfer
+
+### IX · Frontier
+35. Climate Credit Risk
+36. Network & Contagion Models
+37. Deep Learning for PD
+38. Kessler Cascade Modelling
+
 ## Features
 
-- **Interactive calculators** — sliders drive real-time computation of EL, VaR, CVaR, DSCR, CVA, IFRS 9 staging, and more
-- **Live visualisations** — loss distributions, ROC curves, survival curves, copula scatter plots, Monte Carlo histograms
+- **Interactive calculators** — sliders drive real-time computation of EL, VaR, CVaR, DSCR, CVA, IFRS 9 staging, IRB capital, HHI, and more
+- **Live visualisations** — loss distributions, ROC curves, survival curves, copula scatter plots, Monte Carlo histograms, Lorenz curves, network graphs, cascade simulations
 - **Bayesian inference engine** — prior/posterior updates, MCMC diagnostics, sequential learning, SHAP decomposition
 - **Stress testing suite** — scenario builder, reverse stress tests, Kessler cascade simulation
+- **Regulatory coverage** — Basel III/IV IRB formula, credit migration matrices, concentration risk, SRT tests
+- **Frontier research** — climate credit risk, network contagion (DebtRank), deep learning PD, orbital debris cascade
 - **Self-contained** — single HTML file, no dependencies, runs offline
 
 ## Tech
 
 Single `index.html` with inline CSS and JavaScript. No build step. No external dependencies.
 
-- Canvas-based charts
+- Canvas-based charts and visualisations
 - Beta-Binomial conjugate inference
 - Metropolis-Hastings MCMC
 - Vasicek one-factor portfolio model
 - Gaussian and t-copula simulation
+- Euler capital allocation
+- DebtRank network contagion
+- Kessler cascade simulation
 
 ## Deployment
 
