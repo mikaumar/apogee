@@ -6,139 +6,245 @@
 <title>Apogee — Credit Risk Intelligence</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#080c16;--surface:#0d1525;--panel:#111d30;--border:#1c2d47;--border2:#243550;--gold:#c8a84b;--gold-dim:#7a6530;--gold-glow:rgba(200,168,75,0.1);--blue:#3b6ea5;--blue-glow:rgba(59,110,165,0.12);--text:#c5d2e8;--text-dim:#556070;--text-bright:#e5eeff;--red:#c03030;--green:#1d7a50;--amber:#c07820;}
+:root{
+--bg:#080c16;--surface:#0d1525;--panel:#111d30;
+--border:#1c2d47;--border2:#243550;
+--gold:#c8a84b;--gold-dim:#7a6530;--gold-glow:rgba(200,168,75,0.1);
+--blue:#3b6ea5;--blue-glow:rgba(59,110,165,0.12);
+--text:#c5d2e8;--text-dim:#556070;--text-bright:#e5eeff;
+--red:#c03030;--green:#1d7a50;--amber:#c07820;
+}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.6;min-height:100vh;}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.brand{display:flex;align-items:baseline;gap:12px;}.brand-name{font-size:17px;font-weight:600;color:var(--gold);letter-spacing:.02em;}.brand-tag{font-size:10px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;font-family:monospace;}
-.header-right{display:flex;align-items:center;gap:16px;}.live-dot{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-dim);font-family:monospace;}.dot{width:7px;height:7px;border-radius:50%;background:#2ecc71;box-shadow:0 0 6px #2ecc71;animation:blink 2s infinite;}
+.brand{display:flex;align-items:baseline;gap:12px;}
+.brand-name{font-size:17px;font-weight:600;color:var(--gold);letter-spacing:0.02em;}
+.brand-tag{font-size:10px;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;font-family:monospace;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.live-dot{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-dim);font-family:monospace;}
+.dot{width:7px;height:7px;border-radius:50%;background:#2ecc71;box-shadow:0 0 6px #2ecc71;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .mod-num{font-family:monospace;font-size:11px;color:var(--gold);}
 .layout{display:flex;min-height:calc(100vh - 56px);}
 .sidebar{width:240px;background:var(--surface);border-right:1px solid var(--border);flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;display:flex;flex-direction:column;}
-.nav-section{padding:16px 0 4px;}.nav-label{padding:0 16px 6px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);font-family:monospace;border-bottom:1px solid var(--border);margin-bottom:2px;}
-.nbtn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 16px;background:none;border:none;border-left:2px solid transparent;color:var(--text-dim);font-size:12px;text-align:left;cursor:pointer;transition:all .15s;}
-.nbtn:hover{color:var(--text);background:rgba(255,255,255,.03);}.nbtn.active{color:var(--gold);border-left-color:var(--gold);background:rgba(200,168,75,.08);}
-.nbtn.visited{color:var(--text-dim);}.nbtn.visited::after{content:'\2713';margin-left:auto;color:var(--green);font-size:10px;}
-.nav-num{font-family:monospace;font-size:9px;color:var(--border);width:16px;flex-shrink:0;}.nbtn.active .nav-num{color:var(--gold-dim);}
-.sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border);}.prog-row{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--text-dim);margin-bottom:5px;}.prog-track{height:2px;background:var(--border);}.prog-fill{height:100%;background:var(--gold);transition:width .4s;width:3.6%;}
+.nav-section{padding:16px 0 4px;}
+.nav-label{padding:0 16px 6px;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);font-family:monospace;border-bottom:1px solid var(--border);margin-bottom:2px;}
+.nbtn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 16px;background:none;border:none;border-left:2px solid transparent;color:var(--text-dim);font-size:12px;text-align:left;cursor:pointer;transition:all 0.15s;}
+.nbtn:hover{color:var(--text);background:rgba(255,255,255,0.03);}
+.nbtn.active{color:var(--gold);border-left-color:var(--gold);background:rgba(200,168,75,0.08);}
+.nbtn.visited{color:var(--text-dim);}
+.nbtn.visited::after{content:'✓';margin-left:auto;color:var(--green);font-size:10px;}
+.nav-num{font-family:monospace;font-size:9px;color:var(--border);width:16px;flex-shrink:0;}
+.nbtn.active .nav-num{color:var(--gold-dim);}
+.sidebar-footer{margin-top:auto;padding:14px 16px;border-top:1px solid var(--border);}
+.prog-row{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--text-dim);margin-bottom:5px;}
+.prog-track{height:2px;background:var(--border);}
+.prog-fill{height:100%;background:var(--gold);transition:width 0.4s;width:3.6%;}
 .content{flex:1;overflow-y:auto;height:calc(100vh - 56px);}
-.mod{display:none;animation:fadeUp .3s ease;}.mod.active{display:block;}@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.mod{display:none;animation:fadeUp 0.3s ease;}
+.mod.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .hero{padding:40px 48px 28px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,var(--surface) 0%,var(--bg) 100%);position:relative;overflow:hidden;}
-.hero::after{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(200,168,75,.07) 0%,transparent 70%);pointer-events:none;}
-.hero-tag{font-family:monospace;font-size:9px;letter-spacing:.15em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:8px;}
-.hero-title{font-size:36px;font-weight:300;color:var(--text-bright);line-height:1.1;margin-bottom:10px;}.hero-title span{color:var(--gold);font-style:italic;}
+.hero::after{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(200,168,75,0.07) 0%,transparent 70%);pointer-events:none;}
+.hero-tag{font-family:monospace;font-size:9px;letter-spacing:0.15em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:8px;}
+.hero-title{font-size:36px;font-weight:300;color:var(--text-bright);line-height:1.1;margin-bottom:10px;}
+.hero-title span{color:var(--gold);font-style:italic;}
 .hero-sub{font-size:14px;color:var(--text-dim);max-width:520px;line-height:1.7;}
-.body{padding:36px 48px;max-width:900px;}.body p{color:var(--text);margin-bottom:14px;line-height:1.75;}
-.sh{font-size:18px;font-weight:500;color:var(--text-bright);margin:24px 0 10px;}
+.body{padding:36px 48px;max-width:900px;}
+.body p{color:var(--text);margin-bottom:14px;line-height:1.75;}
 .formula{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--gold);padding:18px 22px;margin:20px 0;font-family:monospace;font-size:14px;color:var(--gold);line-height:1.9;}
-.formula .fl{font-family:'Segoe UI',sans-serif;font-size:9px;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
-.formula .fn{font-size:11px;color:var(--text-dim);margin-top:8px;font-family:'Segoe UI',sans-serif;line-height:1.7;}.formula .comment,.formula .c{color:rgba(200,168,75,.45);font-size:12px;}
-.callout{border:1px solid var(--border);border-left:3px solid var(--blue);background:var(--blue-glow);padding:13px 18px;margin:18px 0;font-size:13px;color:var(--text-dim);line-height:1.7;}.callout strong{color:var(--text);}
-.callout.warn{border-left-color:var(--amber);background:rgba(192,120,32,.07);}.callout.good{border-left-color:var(--green);background:rgba(29,122,80,.07);}.callout.red{border-left-color:var(--red);background:rgba(192,48,48,.07);}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0;}.card{background:var(--panel);border:1px solid var(--border);padding:16px 18px;}.card-t{font-family:monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}.card p{font-size:12px;color:var(--text-dim);margin:0;line-height:1.6;}
-.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;}.tbl th{background:var(--panel);border:1px solid var(--border);padding:9px 12px;text-align:left;font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);font-weight:400;}.tbl td{border:1px solid var(--border);padding:9px 12px;color:var(--text);}.tbl tr:hover td{background:rgba(255,255,255,.015);}
+.formula .fl{font-family:'Segoe UI',sans-serif;font-size:9px;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;}
+.formula .fn{font-size:11px;color:var(--text-dim);margin-top:8px;font-family:'Segoe UI',sans-serif;line-height:1.7;}
+.formula .comment,.formula .c{color:rgba(200,168,75,0.45);font-size:12px;}
+.callout{border:1px solid var(--border);border-left:3px solid var(--blue);background:var(--blue-glow);padding:13px 18px;margin:18px 0;font-size:13px;color:var(--text-dim);line-height:1.7;}
+.callout strong{color:var(--text);}
+.callout.warn{border-left-color:var(--amber);background:rgba(192,120,32,0.07);}
+.callout.good{border-left-color:var(--green);background:rgba(29,122,80,0.07);}
+.callout.red{border-left-color:var(--red);background:rgba(192,48,48,0.07);}
+.sh{font-size:18px;font-weight:500;color:var(--text-bright);margin:24px 0 10px;}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0;}
+.card{background:var(--panel);border:1px solid var(--border);padding:16px 18px;}
+.card-t{font-family:monospace;font-size:10px;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.card p{font-size:12px;color:var(--text-dim);margin:0;line-height:1.6;}
+.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;}
+.tbl th{background:var(--panel);border:1px solid var(--border);padding:9px 12px;text-align:left;font-family:monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);font-weight:400;}
+.tbl td{border:1px solid var(--border);padding:9px 12px;color:var(--text);}
+.tbl tr:hover td{background:rgba(255,255,255,0.015);}
 .tm{font-family:monospace;}.tg{font-family:monospace;color:var(--gold);}.tr{font-family:monospace;color:var(--red);}
 .widget{background:var(--panel);border:1px solid var(--border);margin:20px 0;}
 .widget-hd,.wh{display:flex;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--border);background:var(--surface);}
-.widget-dot,.wd{width:6px;height:6px;background:var(--gold);border-radius:50%;}.widget-t,.wt{font-family:monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}.widget-body,.wb{padding:20px;}
-.sr{display:flex;align-items:center;gap:12px;margin-bottom:14px;}.sl{width:190px;flex-shrink:0;font-size:12px;color:var(--text-dim);}.sl span,.sl em{font-family:monospace;font-style:normal;color:var(--gold-dim);font-size:11px;}
-input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--border);outline:none;cursor:pointer;}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--gold);cursor:pointer;border-radius:50%;}
+.widget-dot,.wd{width:6px;height:6px;background:var(--gold);border-radius:50%;}
+.widget-t,.wt{font-family:monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.widget-body,.wb{padding:20px;}
+.sr{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.sl{width:190px;flex-shrink:0;font-size:12px;color:var(--text-dim);}
+.sl span,.sl em{font-family:monospace;font-style:normal;font-size:11px;color:var(--gold-dim);}
+input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--border);outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--gold);cursor:pointer;border-radius:50%;}
 .sv{font-family:monospace;font-size:13px;color:var(--gold);width:80px;text-align:right;flex-shrink:0;}
-.metrics,.mets{display:grid;gap:8px;margin-top:16px;}.m2{grid-template-columns:repeat(2,1fr);}.m3{grid-template-columns:repeat(3,1fr);}.m4{grid-template-columns:repeat(4,1fr);}
+.metrics,.mets{display:grid;gap:8px;margin-top:16px;}
+.m2{grid-template-columns:repeat(2,1fr);}.m3{grid-template-columns:repeat(3,1fr);}.m4{grid-template-columns:repeat(4,1fr);}
 .met{background:var(--surface);border:1px solid var(--border);padding:14px;}
-.met-l,.ml{font-family:monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
-.met-v,.mv{font-family:monospace;font-size:20px;font-weight:500;color:var(--text-bright);transition:color .3s;}
+.met-l,.ml{font-family:monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+.met-v,.mv{font-family:monospace;font-size:20px;font-weight:500;color:var(--text-bright);transition:color 0.3s;}
 .met-s,.ms{font-family:monospace;font-size:9px;color:var(--text-dim);margin-top:3px;}
-.v-low,.v-lo,.vlo{color:#2ecc71!important;}.v-mid,.v-mi,.vmi{color:#f39c12!important;}.v-hi,.vhi{color:#e74c3c!important;}.v-gold,.v-go,.vgo{color:var(--gold)!important;}
-.chart-wrap,.cw{background:var(--surface);border:1px solid var(--border);padding:16px;margin:14px 0;}canvas{display:block;width:100%;}
-.bar-row,.br{display:flex;align-items:center;gap:12px;margin-bottom:10px;}.bar-lbl,.bl{width:180px;font-size:11px;color:var(--text-dim);flex-shrink:0;}.bar-track,.bt{flex:1;height:4px;background:var(--border);position:relative;}.bar-fill,.bf{position:absolute;left:0;top:0;height:100%;background:var(--gold);transition:width .4s;}.bar-fill.red{background:var(--red);}.bar-val,.bv{font-family:monospace;font-size:11px;color:var(--gold);width:48px;text-align:right;}
-.rating-wrap{margin:16px 0;}.rating-segs{display:flex;gap:3px;margin-bottom:5px;}.rseg{flex:1;height:10px;background:var(--border);transition:all .3s;}.rlbls{display:flex;gap:3px;}.rlbls span{flex:1;text-align:center;font-family:monospace;font-size:8px;color:var(--text-dim);}
+.v-low,.v-lo,.vlo{color:#2ecc71!important;}
+.v-mid,.v-mi,.vmi{color:#f39c12!important;}
+.v-hi,.vhi{color:#e74c3c!important;}
+.v-gold,.v-go,.vgo{color:var(--gold)!important;}
+.chart-wrap,.cw{background:var(--surface);border:1px solid var(--border);padding:16px;margin:14px 0;}
+canvas{display:block;width:100%;}
+.bar-row,.br{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-lbl,.bl{width:180px;font-size:11px;color:var(--text-dim);flex-shrink:0;}
+.bar-track,.bt{flex:1;height:4px;background:var(--border);position:relative;}
+.bar-fill,.bf{position:absolute;left:0;top:0;height:100%;background:var(--gold);transition:width 0.4s;}
+.bar-fill.red{background:var(--red);}
+.bar-val,.bv{font-family:monospace;font-size:11px;color:var(--gold);width:48px;text-align:right;}
+.rating-wrap{margin:16px 0;}
+.rating-segs{display:flex;gap:3px;margin-bottom:5px;}
+.rseg{flex:1;height:10px;background:var(--border);transition:all 0.3s;}
+.rlbls{display:flex;gap:3px;}
+.rlbls span{flex:1;text-align:center;font-family:monospace;font-size:8px;color:var(--text-dim);}
 .mfooter{padding:20px 48px 36px;display:flex;justify-content:space-between;border-top:1px solid var(--border);}
-.btn{background:none;border:1px solid var(--border);color:var(--text-dim);font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 20px;cursor:pointer;transition:all .2s;}.btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,168,75,.07);}.btn.primary{border-color:var(--gold);color:var(--gold);background:rgba(200,168,75,.07);}.btn:disabled{opacity:.3;cursor:not-allowed;}.btn:disabled:hover{border-color:var(--border);color:var(--text-dim);background:none;}
-.gauge-wrap{display:flex;align-items:center;gap:32px;padding:10px 0;}.gauge-box{position:relative;width:130px;height:130px;flex-shrink:0;}.gauge-box canvas{display:block;}.gauge-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}.gi-val{font-family:monospace;font-size:22px;color:var(--gold);line-height:1;}.gi-lbl{font-family:monospace;font-size:8px;color:var(--text-dim);letter-spacing:.06em;margin-top:3px;}
-.amort-chart{display:flex;align-items:flex-end;gap:3px;height:90px;margin:12px 0 4px;}.ab{flex:1;background:linear-gradient(180deg,var(--gold) 0%,var(--gold-dim) 100%);min-width:4px;transition:height .4s;}
-.chain-wrap{display:flex;gap:2px;margin:10px 0;height:48px;align-items:flex-end;}.chain-bar{flex:1;background:var(--gold);opacity:.7;min-width:2px;}
-.dist-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}.dist-panel{background:var(--surface);border:1px solid var(--border);padding:12px;}.dist-label{font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
-.steps{display:flex;gap:0;margin:20px 0;position:relative;}.steps::before{content:'';position:absolute;top:22px;left:22px;right:22px;height:1px;background:var(--border);z-index:0;}
-.step{flex:1;text-align:center;position:relative;z-index:1;cursor:pointer;}.step-num{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--panel);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:var(--text-dim);margin:0 auto 8px;transition:all .2s;}
-.step.active .step-num{border-color:var(--gold);background:var(--gold-glow);color:var(--gold);box-shadow:0 0 10px var(--gold-glow);}.step.done .step-num{border-color:var(--green);background:rgba(29,122,80,.12);color:#2ecc71;}
-.step-lbl{font-size:10px;color:var(--text-dim);line-height:1.4;}.step.active .step-lbl{color:var(--gold);}
-.step-content{display:none;background:var(--panel);border:1px solid var(--border);padding:20px;margin:4px 0 16px;animation:fadeUp .25s ease;}.step-content.active{display:block;}
+.btn{background:none;border:1px solid var(--border);color:var(--text-dim);font-family:monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:9px 20px;cursor:pointer;transition:all 0.2s;}
+.btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,168,75,0.07);}
+.btn.primary{border-color:var(--gold);color:var(--gold);background:rgba(200,168,75,0.07);}
+.btn:disabled{opacity:0.3;cursor:not-allowed;}
+.btn:disabled:hover{border-color:var(--border);color:var(--text-dim);background:none;}
+.gauge-wrap{display:flex;align-items:center;gap:32px;padding:10px 0;}
+.gauge-box{position:relative;width:130px;height:130px;flex-shrink:0;}
+.gauge-box canvas{display:block;}
+.gauge-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.gi-val{font-family:monospace;font-size:22px;color:var(--gold);line-height:1;}
+.gi-lbl{font-family:monospace;font-size:8px;color:var(--text-dim);letter-spacing:0.06em;margin-top:3px;}
+.amort-chart{display:flex;align-items:flex-end;gap:3px;height:90px;margin:12px 0 4px;}
+.ab{flex:1;background:linear-gradient(180deg,var(--gold) 0%,var(--gold-dim) 100%);min-width:4px;transition:height 0.4s;}
+.steps{display:flex;gap:0;margin:20px 0;position:relative;}
+.steps::before{content:'';position:absolute;top:22px;left:22px;right:22px;height:1px;background:var(--border);z-index:0;}
+.step{flex:1;text-align:center;position:relative;z-index:1;cursor:pointer;}
+.step-num{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--panel);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:var(--text-dim);margin:0 auto 8px;transition:all .2s;}
+.step.active .step-num{border-color:var(--gold);background:var(--gold-glow);color:var(--gold);box-shadow:0 0 10px var(--gold-glow);}
+.step.done .step-num{border-color:var(--green);background:rgba(29,122,80,.12);color:#2ecc71;}
+.step-lbl{font-size:10px;color:var(--text-dim);line-height:1.4;}
+.step.active .step-lbl{color:var(--gold);}
+.step-content{display:none;background:var(--panel);border:1px solid var(--border);padding:20px;margin:4px 0 16px;animation:fadeUp .25s ease;}
+.step-content.active{display:block;}
+.chain-wrap{display:flex;gap:2px;margin:10px 0;height:48px;align-items:flex-end;}
+.chain-bar{flex:1;background:var(--gold);opacity:0.7;min-width:2px;transition:height .1s;}
+.dist-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.dist-panel{background:var(--surface);border:1px solid var(--border);padding:12px;}
+.dist-label{font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
 .mcmc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.prior-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;}.prior-card{background:var(--surface);border:1px solid var(--border);padding:14px;cursor:pointer;transition:all .2s;}.prior-card:hover{border-color:var(--border2);}.prior-card.selected{border-color:var(--gold);background:var(--gold-glow);}.prior-card .pt{font-family:monospace;font-size:10px;color:var(--gold);margin-bottom:4px;}.prior-card .pd{font-size:11px;color:var(--text-dim);line-height:1.5;}
-.sens-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}.sens-var{width:180px;font-size:12px;color:var(--text);}.sens-bar-wrap{flex:1;display:flex;align-items:center;gap:6px;}.sens-track{flex:1;height:3px;background:var(--border);position:relative;}.sens-fill{position:absolute;top:0;height:100%;transition:width .4s;}.sens-fill.pos{left:50%;background:var(--red);}.sens-fill.neg{right:50%;background:var(--green);}.sens-val{font-family:monospace;font-size:11px;width:60px;text-align:right;}.sens-val.pos{color:var(--red);}.sens-val.neg{color:var(--green);}
-.ci-box{background:var(--surface);border:1px solid var(--border);padding:16px;margin:10px 0;}.ci-title{font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;}.ci-bar-wrap{position:relative;height:28px;background:var(--panel);border:1px solid var(--border);margin-bottom:6px;}.ci-fill{position:absolute;top:0;height:100%;background:rgba(200,168,75,.2);transition:all .4s;}.ci-line{position:absolute;top:0;height:100%;width:2px;background:var(--gold);transition:all .4s;}.ci-labels{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--text-dim);}
-.kmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;}.kcard{background:var(--panel);border:1px solid var(--border);padding:16px;position:relative;transition:border-color .2s;}.kcard:hover{border-color:var(--border2);}.kcard.done{border-color:var(--green);background:rgba(29,122,80,.05);}.kcard.new{border-color:var(--gold);background:var(--gold-glow);}.kcard.partial{border-color:var(--amber);background:rgba(192,120,32,.05);}
-.kcard-t{font-family:monospace;font-size:10px;color:var(--gold);margin-bottom:6px;letter-spacing:.06em;}.kcard.done .kcard-t{color:#2ecc71;}.kcard-s{font-size:11px;color:var(--text-dim);line-height:1.5;}
-.kcard-badge{position:absolute;top:10px;right:10px;font-family:monospace;font-size:8px;padding:2px 6px;border-radius:2px;letter-spacing:.08em;}.badge-done{background:rgba(29,122,80,.3);color:#2ecc71;}.badge-new{background:rgba(200,168,75,.2);color:var(--gold);}.badge-partial{background:rgba(192,120,32,.2);color:var(--amber);}
-.hist-wrap{display:flex;align-items:flex-end;gap:2px;height:100px;margin:10px 0;}.hbar{flex:1;background:var(--gold);opacity:.7;min-width:3px;transition:height .2s;}.hbar.tail{background:var(--red);opacity:.8;}.hbar.el{background:var(--amber);}
-.progress-ring{display:flex;align-items:center;justify-content:center;gap:24px;margin:20px 0;}.ring-item{text-align:center;}.ring-val{font-family:monospace;font-size:22px;color:var(--gold);}.ring-lbl{font-size:10px;color:var(--text-dim);margin-top:3px;}
-.scen-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;}.scen-card{background:var(--surface);border:1px solid var(--border);padding:12px;}.scen-t{font-family:monospace;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;}.scen-v{font-family:monospace;font-size:17px;color:var(--text-bright);}.scen-s{font-size:11px;color:var(--text-dim);margin-top:3px;}
-.toggle-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}.toggle-btn{background:none;border:1px solid var(--border);color:var(--text-dim);font-family:monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;}.toggle-btn:hover{border-color:var(--border2);color:var(--text);}.toggle-btn.on{border-color:var(--gold);color:var(--gold);background:var(--gold-glow);}
+.prior-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;}
+.prior-card{background:var(--surface);border:1px solid var(--border);padding:14px;cursor:pointer;transition:all .2s;}
+.prior-card:hover{border-color:var(--border2);}
+.prior-card.selected{border-color:var(--gold);background:var(--gold-glow);}
+.prior-card .pt{font-family:monospace;font-size:10px;color:var(--gold);margin-bottom:4px;}
+.prior-card .pd{font-size:11px;color:var(--text-dim);line-height:1.5;}
+.sens-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.sens-var{width:180px;font-size:12px;color:var(--text);}
+.sens-bar-wrap{flex:1;display:flex;align-items:center;gap:6px;}
+.sens-track{flex:1;height:3px;background:var(--border);position:relative;}
+.sens-fill{position:absolute;top:0;height:100%;transition:width .4s;}
+.sens-fill.pos{left:50%;background:var(--red);}
+.sens-fill.neg{right:50%;background:var(--green);}
+.sens-val{font-family:monospace;font-size:11px;width:60px;text-align:right;}
+.sens-val.pos{color:var(--red);}.sens-val.neg{color:var(--green);}
+.ci-box{background:var(--surface);border:1px solid var(--border);padding:16px;margin:10px 0;}
+.ci-title{font-family:monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;}
+.ci-bar-wrap{position:relative;height:28px;background:var(--panel);border:1px solid var(--border);margin-bottom:6px;}
+.ci-fill{position:absolute;top:0;height:100%;background:rgba(200,168,75,0.2);transition:all .4s;}
+.ci-line{position:absolute;top:0;height:100%;width:2px;background:var(--gold);transition:all .4s;}
+.ci-labels{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--text-dim);}
+.kmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;}
+.kcard{background:var(--panel);border:1px solid var(--border);padding:16px;position:relative;transition:border-color .2s;}
+.kcard:hover{border-color:var(--border2);}
+.kcard.done{border-color:var(--green);background:rgba(29,122,80,.05);}
+.kcard.new{border-color:var(--gold);background:var(--gold-glow);}
+.kcard.partial{border-color:var(--amber);background:rgba(192,120,32,.05);}
+.kcard-t{font-family:monospace;font-size:10px;color:var(--gold);margin-bottom:6px;letter-spacing:.06em;}
+.kcard.done .kcard-t{color:#2ecc71;}
+.kcard-s{font-size:11px;color:var(--text-dim);line-height:1.5;}
+.kcard-badge{position:absolute;top:10px;right:10px;font-family:monospace;font-size:8px;padding:2px 6px;border-radius:2px;letter-spacing:.08em;}
+.badge-done{background:rgba(29,122,80,.3);color:#2ecc71;}
+.badge-new{background:rgba(200,168,75,.2);color:var(--gold);}
+.badge-partial{background:rgba(192,120,32,.2);color:var(--amber);}
+.hist-wrap{display:flex;align-items:flex-end;gap:2px;height:100px;margin:10px 0;}
+.hbar{flex:1;background:var(--gold);opacity:.7;min-width:3px;transition:height .2s;}
+.hbar.tail{background:var(--red);opacity:.8;}.hbar.el{background:var(--amber);}
+.progress-ring{display:flex;align-items:center;justify-content:center;gap:24px;margin:20px 0;}
+.ring-item{text-align:center;}
+.ring-val{font-family:monospace;font-size:22px;color:var(--gold);}
+.ring-lbl{font-size:10px;color:var(--text-dim);margin-top:3px;}
+.scen-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;}
+.scen-card{background:var(--surface);border:1px solid var(--border);padding:12px;}
+.scen-t{font-family:monospace;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;}
+.scen-v{font-family:monospace;font-size:17px;color:var(--text-bright);}
+.scen-s{font-size:11px;color:var(--text-dim);margin-top:3px;}
+.toggle-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.toggle-btn{background:none;border:1px solid var(--border);color:var(--text-dim);font-family:monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;}
+.toggle-btn:hover{border-color:var(--border2);color:var(--text);}
+.toggle-btn.on{border-color:var(--gold);color:var(--gold);background:var(--gold-glow);}
 .copula-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.sec-title{font-size:32px;font-weight:300;color:var(--text-bright);margin-bottom:6px;}.sec-title span{color:var(--gold);font-style:italic;}.sec-sub{font-size:13px;color:var(--text-dim);margin-bottom:28px;line-height:1.7;max-width:600px;}
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="brand">
-    <span class="brand-name">Apogee</span>
-    <span class="brand-tag">// Credit Risk Intelligence</span>
-  </div>
-  <div class="header-right">
-    <div class="live-dot"><div class="dot"></div>LIVE</div>
-    <div class="mod-num" id="modCtr">01 / 28</div>
-  </div>
+<div class="brand">
+<span class="brand-name">Apogee</span>
+<span class="brand-tag">// Credit Risk Intelligence</span>
+</div>
+<div class="header-right">
+<div class="live-dot"><div class="dot"></div>LIVE</div>
+<div class="mod-num" id="modCtr">01 / 28</div>
+</div>
 </div>
 <div class="layout">
-  <nav class="sidebar">
-<div class="nav-section"><div class="nav-label">I . Foundations</div>
+<nav class="sidebar">
+<div class="nav-section"><div class="nav-label">I · Foundations</div>
 <button class="nbtn active" onclick="nav(0)"><span class="nav-num">01</span>What Is Credit Risk</button>
 <button class="nbtn" onclick="nav(1)"><span class="nav-num">02</span>The Core Formula</button>
 <button class="nbtn" onclick="nav(2)"><span class="nav-num">03</span>Probability of Default</button>
 </div>
-<div class="nav-section"><div class="nav-label">II . Components</div>
+<div class="nav-section"><div class="nav-label">II · Components</div>
 <button class="nbtn" onclick="nav(3)"><span class="nav-num">04</span>Loss Given Default</button>
 <button class="nbtn" onclick="nav(4)"><span class="nav-num">05</span>Exposure at Default</button>
 <button class="nbtn" onclick="nav(5)"><span class="nav-num">06</span>Expected vs Unexpected</button>
 </div>
-<div class="nav-section"><div class="nav-label">III . Models</div>
+<div class="nav-section"><div class="nav-label">III · Models</div>
 <button class="nbtn" onclick="nav(6)"><span class="nav-num">07</span>Structural Models</button>
 <button class="nbtn" onclick="nav(7)"><span class="nav-num">08</span>Reduced-Form Models</button>
 <button class="nbtn" onclick="nav(8)"><span class="nav-num">09</span>Machine Learning</button>
 </div>
-<div class="nav-section"><div class="nav-label">IV . Application</div>
+<div class="nav-section"><div class="nav-label">IV · Application</div>
 <button class="nbtn" onclick="nav(9)"><span class="nav-num">10</span>Credit Ratings</button>
-<button class="nbtn" onclick="nav(10)"><span class="nav-num">11</span>Portfolio &amp; Correlation</button>
-<button class="nbtn" onclick="nav(11)"><span class="nav-num">12</span>Full Calculator</button>
+<button class="nbtn" onclick="nav(10)"><span class="nav-num">11</span>Portfolio & Correlation</button>
+<button class="nbtn" onclick="nav(11)"><span class="nav-num">12</span>Full Risk Calculator</button>
 </div>
-<div class="nav-section"><div class="nav-label">V . Bayesian</div>
+<div class="nav-section"><div class="nav-label">V · Bayesian</div>
 <button class="nbtn" onclick="nav(12)"><span class="nav-num">13</span>Why Bayesian</button>
 <button class="nbtn" onclick="nav(13)"><span class="nav-num">14</span>Prior Specification</button>
 <button class="nbtn" onclick="nav(14)"><span class="nav-num">15</span>Likelihood Function</button>
 <button class="nbtn" onclick="nav(15)"><span class="nav-num">16</span>Posterior Update</button>
 <button class="nbtn" onclick="nav(16)"><span class="nav-num">17</span>MCMC Sampling</button>
-<button class="nbtn" onclick="nav(17)"><span class="nav-num">18</span>PD Output &amp; CI</button>
-<button class="nbtn" onclick="nav(18)"><span class="nav-num">19</span>Sensitivity &amp; SHAP</button>
+<button class="nbtn" onclick="nav(17)"><span class="nav-num">18</span>PD Output & CI</button>
+<button class="nbtn" onclick="nav(18)"><span class="nav-num">19</span>Sensitivity & SHAP</button>
 <button class="nbtn" onclick="nav(19)"><span class="nav-num">20</span>ALPHA Architecture</button>
 </div>
-<div class="nav-section"><div class="nav-label">VI . Advanced</div>
+<div class="nav-section"><div class="nav-label">VI · Advanced</div>
 <button class="nbtn" onclick="nav(20)"><span class="nav-num">21</span>Knowledge Map</button>
 <button class="nbtn" onclick="nav(21)"><span class="nav-num">22</span>Monte Carlo</button>
-<button class="nbtn" onclick="nav(22)"><span class="nav-num">23</span>Copulas</button>
+<button class="nbtn" onclick="nav(22)"><span class="nav-num">23</span>Copula Models</button>
 <button class="nbtn" onclick="nav(23)"><span class="nav-num">24</span>Stress Testing</button>
 <button class="nbtn" onclick="nav(24)"><span class="nav-num">25</span>CVA / XVA</button>
-<button class="nbtn" onclick="nav(25)"><span class="nav-num">26</span>IFRS 9</button>
+<button class="nbtn" onclick="nav(25)"><span class="nav-num">26</span>IFRS 9 Deep Dive</button>
 <button class="nbtn" onclick="nav(26)"><span class="nav-num">27</span>Model Validation</button>
-<button class="nbtn" onclick="nav(27)"><span class="nav-num">28</span>Derivatives &amp; Sovereign</button>
+<button class="nbtn" onclick="nav(27)"><span class="nav-num">28</span>Derivatives & Infrastructure</button>
 </div>
-
-    <div class="sidebar-footer">
-      <div class="prog-row"><span>PROGRESS</span><span id="pctLbl">4%</span></div>
-      <div class="prog-track"><div class="prog-fill" id="pfill"></div></div>
-    </div>
-  </nav>
-  <div class="content">
+<div class="sidebar-footer">
+<div class="prog-row"><span>PROGRESS</span><span id="pctLbl">4%</span></div>
+<div class="prog-track"><div class="prog-fill" id="pfill"></div></div>
+</div></nav>
+<div class="content">
 <div class="mod active" id="p0">
       <div class="hero">
         <div class="hero-tag">Module 01 // Foundations</div>
@@ -173,8 +279,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(1)">Next: The Core Formula →</button>
       </div>
     </div>
-
-    <!-- ══ M1: CORE FORMULA ══ -->
 <div class="mod" id="p1">
       <div class="hero">
         <div class="hero-tag">Module 02 // Foundations</div>
@@ -212,8 +316,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(2)">Next: Probability of Default →</button>
       </div>
     </div>
-
-    <!-- ══ M2: PD ══ -->
 <div class="mod" id="p2">
       <div class="hero">
         <div class="hero-tag">Module 03 // Foundations</div>
@@ -253,8 +355,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(3)">Next: Loss Given Default →</button>
       </div>
     </div>
-
-    <!-- ══ M3: LGD ══ -->
 <div class="mod" id="p3">
       <div class="hero">
         <div class="hero-tag">Module 04 // Components</div>
@@ -295,8 +395,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(4)">Next: Exposure at Default →</button>
       </div>
     </div>
-
-    <!-- ══ M4: EAD ══ -->
 <div class="mod" id="p4">
       <div class="hero">
         <div class="hero-tag">Module 05 // Components</div>
@@ -334,8 +432,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(5)">Next: Expected vs Unexpected →</button>
       </div>
     </div>
-
-    <!-- ══ M5: EL vs UL ══ -->
 <div class="mod" id="p5">
       <div class="hero">
         <div class="hero-tag">Module 06 // Components</div>
@@ -374,8 +470,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(6)">Next: Structural Models →</button>
       </div>
     </div>
-
-    <!-- ══ M6: STRUCTURAL ══ -->
 <div class="mod" id="p6">
       <div class="hero">
         <div class="hero-tag">Module 07 // Models</div>
@@ -421,8 +515,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(7)">Next: Reduced-Form Models →</button>
       </div>
     </div>
-
-    <!-- ══ M7: REDUCED FORM ══ -->
 <div class="mod" id="p7">
       <div class="hero">
         <div class="hero-tag">Module 08 // Models</div>
@@ -462,8 +554,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(8)">Next: Machine Learning →</button>
       </div>
     </div>
-
-    <!-- ══ M8: ML ══ -->
 <div class="mod" id="p8">
       <div class="hero">
         <div class="hero-tag">Module 09 // Models</div>
@@ -496,8 +586,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(9)">Next: Credit Ratings →</button>
       </div>
     </div>
-
-    <!-- ══ M9: RATINGS ══ -->
 <div class="mod" id="p9">
       <div class="hero">
         <div class="hero-tag">Module 10 // Application</div>
@@ -541,8 +629,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(10)">Next: Portfolio & Correlation →</button>
       </div>
     </div>
-
-    <!-- ══ M10: PORTFOLIO ══ -->
 <div class="mod" id="p10">
       <div class="hero">
         <div class="hero-tag">Module 11 // Application</div>
@@ -576,8 +662,6 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
         <button class="btn primary" onclick="nav(11)">Next: Full Risk Calculator →</button>
       </div>
     </div>
-
-    <!-- ══ M11: FULL CALCULATOR ══ -->
 <div class="mod" id="p11">
       <div class="hero">
         <div class="hero-tag">Module 12 // Application</div>
@@ -622,11 +706,7 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
       </div>
     </div>
 <div class="mod" id="p12">
-<div class="hero"><div class="hero-tag">Module 13 // Bayesian</div><div class="hero-title">Why <span>Bayesian</span></div><div class="hero-sub">Frequentist methods need large default samples. Satellite credit has neither.</div></div>
-<div class="body">
-
-  <div class="sec-title">Why <span>Bayesian</span> for Credit Risk</div>
-  <div class="sec-sub">Frequentist methods require large, labelled default samples. Satellite credit has neither. Bayesian inference is not a preference — it is the only statistically coherent option given the data environment.</div>
+  <div class="hero"><div class="hero-tag">Module 13 // Bayesian</div><div class="hero-title">Why <span>Bayesian</span> for Credit Risk</div><div class="hero-sub">Frequentist methods require large, labelled default samples. Satellite credit has neither. Bayesian inference is not a preference — it is the only statistically coherent option given the data environment.</div></div><div class="body">
 
   <p>Classical maximum likelihood estimation (MLE) treats model parameters as fixed unknowns. You estimate them from data alone. With 1,000 mortgage defaults, that works. With 12 recorded satellite operator defaults over 40 years of commercial spaceflight, it does not. MLE produces point estimates with artificially narrow confidence intervals that misrepresent the true state of uncertainty.</p>
 
@@ -666,20 +746,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
       </div>
     </div>
   </div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 1: PRIOR SPECIFICATION
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(11)">&#8592; Prev</button><button class="btn primary" onclick="nav(13)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(11)">← Prev</button><button class="btn primary" onclick="nav(13)">Next →</button></div></div>
 <div class="mod" id="p13">
-<div class="hero"><div class="hero-tag">Module 14 // Bayesian</div><div class="hero-title"><span>Prior</span> Specification</div><div class="hero-sub">The prior encodes what you know before seeing the data.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Prior</span> Specification</div>
-  <div class="sec-sub">The prior encodes what you know before seeing the data. It is not a guess. It is a formal statement of information from analogous assets, expert judgment, and physical constraints.</div>
+  <div class="hero"><div class="hero-tag">Module 14 // Bayesian</div><div class="hero-title"><span>Prior</span> Specification</div><div class="hero-sub">The prior encodes what you know before seeing the data. It is not a guess. It is a formal statement of information from analogous assets, expert judgment, and physical constraints.</div></div><div class="body">
 
   <p>The Beta distribution is the natural prior for a probability parameter. It is defined on [0,1], has two shape parameters α and β, and is conjugate to the Binomial likelihood — meaning the posterior is also Beta. This makes updating analytically tractable.</p>
 
@@ -725,20 +794,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout warn"><strong>Prior sensitivity:</strong> a strong prior (high α + β) resists updating even with strong data. Always test how much the posterior moves when you double the prior ESS. If the posterior does not move, you are not learning from data — you are imposing your prior. Report this as a governance risk in the model documentation.</div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 2: LIKELIHOOD
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(12)">&#8592; Prev</button><button class="btn primary" onclick="nav(14)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(12)">← Prev</button><button class="btn primary" onclick="nav(14)">Next →</button></div></div>
 <div class="mod" id="p14">
-<div class="hero"><div class="hero-tag">Module 15 // Bayesian</div><div class="hero-title">The <span>Likelihood</span> Function</div><div class="hero-sub">The likelihood is how data updates the prior.</div></div>
-<div class="body">
-
-  <div class="sec-title">The <span>Likelihood</span> Function</div>
-  <div class="sec-sub">The likelihood is the probability of observing your data given a particular value of PD. It is the mechanism by which data updates the prior.</div>
+  <div class="hero"><div class="hero-tag">Module 15 // Bayesian</div><div class="hero-title">The <span>Likelihood</span> Function</div><div class="hero-sub">The likelihood is the probability of observing your data given a particular value of PD. It is the mechanism by which data updates the prior.</div></div><div class="body">
 
   <p>For a binary default outcome (defaulted = 1, survived = 0), the natural likelihood is Binomial. Given n exposures and d defaults, the probability of observing exactly d defaults if the true PD is θ is:</p>
 
@@ -776,20 +834,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </table>
 
   <div class="callout"><strong>Joint likelihood:</strong> assuming conditional independence across signals (a strong but tractable assumption), the joint likelihood is the product of individual likelihoods. Log-likelihood is additive. Each new telemetry cycle contributes a likelihood update — functionally equivalent to recalibrating the hazard rate in a reduced-form model.</div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 3: POSTERIOR UPDATE
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(13)">&#8592; Prev</button><button class="btn primary" onclick="nav(15)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(13)">← Prev</button><button class="btn primary" onclick="nav(15)">Next →</button></div></div>
 <div class="mod" id="p15">
-<div class="hero"><div class="hero-tag">Module 16 // Bayesian</div><div class="hero-title"><span>Posterior</span> Update</div><div class="hero-sub">When prior is Beta and likelihood is Binomial, the posterior is Beta.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Posterior</span> Update</div>
-  <div class="sec-sub">When the prior is Beta and the likelihood is Binomial, the posterior is Beta. This conjugacy makes updating exact and computationally free.</div>
+  <div class="hero"><div class="hero-tag">Module 16 // Bayesian</div><div class="hero-title"><span>Posterior</span> Update</div><div class="hero-sub">When the prior is Beta and the likelihood is Binomial, the posterior is Beta. This conjugacy makes updating exact and computationally free.</div></div><div class="body">
 
   <div class="formula">
     <div class="fl">Conjugate Update Rule (Beta-Binomial)</div>
@@ -852,20 +899,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
       <div style="font-family:monospace;font-size:9px;color:var(--dim);margin-top:6px;">Each period: posterior from previous period becomes new prior. Red dashed line = true PD. Watch credible interval narrow.</div>
     </div>
   </div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 4: MCMC
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(14)">&#8592; Prev</button><button class="btn primary" onclick="nav(16)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(14)">← Prev</button><button class="btn primary" onclick="nav(16)">Next →</button></div></div>
 <div class="mod" id="p16">
-<div class="hero"><div class="hero-tag">Module 17 // Bayesian</div><div class="hero-title">MCMC <span>Sampling</span></div><div class="hero-sub">When the posterior has no closed form, MCMC generates samples numerically.</div></div>
-<div class="body">
-
-  <div class="sec-title">MCMC <span>Sampling</span></div>
-  <div class="sec-sub">When the posterior has no closed-form solution — because the model has multiple parameters or a non-conjugate structure — Markov Chain Monte Carlo generates samples from the posterior numerically.</div>
+  <div class="hero"><div class="hero-tag">Module 17 // Bayesian</div><div class="hero-title">MCMC <span>Sampling</span></div><div class="hero-sub">When the posterior has no closed-form solution — because the model has multiple parameters or a non-conjugate structure — Markov Chain Monte Carlo generates samples from the posterior numerically.</div></div><div class="body">
 
   <p>The Beta-Binomial conjugate model is analytically tractable. But ALPHA's full model is not: it conditions PD on multiple correlated inputs (SIGMA score, DSCR, operator leverage, insurance coverage, orbital regime). The joint posterior across all parameters requires MCMC.</p>
 
@@ -919,20 +955,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
     <div class="cw"><canvas id="b_cRhat" height="130"></canvas></div>
     <div class="callout good"><strong>Practical rule:</strong> run at least 4 chains. Discard the first 50% of each as burn-in. Compute R-hat for each parameter. If any R-hat exceeds 1.05, double the number of iterations and recheck. For ALPHA's multi-parameter model, this diagnostic is mandatory before any PD output is used in a credit decision.</div>
   </div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 5: PD OUTPUT
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(15)">&#8592; Prev</button><button class="btn primary" onclick="nav(17)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(15)">← Prev</button><button class="btn primary" onclick="nav(17)">Next →</button></div></div>
 <div class="mod" id="p17">
-<div class="hero"><div class="hero-tag">Module 18 // Bayesian</div><div class="hero-title">PD <span>Output</span> &amp; CI</div><div class="hero-sub">The posterior distribution over PD is the deliverable.</div></div>
-<div class="body">
-
-  <div class="sec-title">PD <span>Output & Credible Intervals</span></div>
-  <div class="sec-sub">The posterior distribution over PD is the deliverable. A single point estimate discards the uncertainty information that makes Bayesian inference valuable.</div>
+  <div class="hero"><div class="hero-tag">Module 18 // Bayesian</div><div class="hero-title">PD <span>Output & Credible Intervals</span></div><div class="hero-sub">The posterior distribution over PD is the deliverable. A single point estimate discards the uncertainty information that makes Bayesian inference valuable.</div></div><div class="body">
 
   <p>From the posterior samples, you extract three numbers for each horizon: the posterior mean (point estimate for pricing), and the 5th and 95th percentiles (the 90% credible interval for stress testing and capital allocation). The width of the credible interval tells the credit committee how confident the model is.</p>
 
@@ -961,20 +986,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout"><strong>Credit committee use:</strong> present the posterior mean as the base case PD for pricing. Present the 95th percentile as the stress PD for economic capital. The ratio of 95th percentile to mean is the model uncertainty multiplier. A multiplier above 3× indicates insufficient data — the credit committee should require more diligence before approving.</div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 6: SENSITIVITY & SHAP
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(16)">&#8592; Prev</button><button class="btn primary" onclick="nav(18)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(16)">← Prev</button><button class="btn primary" onclick="nav(18)">Next →</button></div></div>
 <div class="mod" id="p18">
-<div class="hero"><div class="hero-tag">Module 19 // Bayesian</div><div class="hero-title"><span>Sensitivity</span> &amp; SHAP</div><div class="hero-sub">Sensitivity analysis and SHAP answer the question: why?</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Sensitivity</span> Analysis & SHAP</div>
-  <div class="sec-sub">The posterior distribution answers "what is the PD?" Sensitivity analysis and Shapley values answer "why?" Both are required for institutional explainability.</div>
+  <div class="hero"><div class="hero-tag">Module 19 // Bayesian</div><div class="hero-title"><span>Sensitivity</span> Analysis & SHAP</div><div class="hero-sub">The posterior distribution answers "what is the PD?" Sensitivity analysis and Shapley values answer "why?" Both are required for institutional explainability.</div></div><div class="body">
 
   <p>Posterior sensitivity analysis moves one input at a time and measures the shift in posterior mean PD. It identifies which variables are driving the estimate. Variables with high sensitivity require more rigorous data validation. Variables with low sensitivity can be monitored at lower frequency.</p>
 
@@ -1010,20 +1024,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
       </div>
     </div>
   </div>
-</div>
-
-<!-- ══════════════════════════════════
-     TAB 7: ALPHA ARCHITECTURE
-══════════════════════════════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(17)">&#8592; Prev</button><button class="btn primary" onclick="nav(19)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(17)">← Prev</button><button class="btn primary" onclick="nav(19)">Next →</button></div></div>
 <div class="mod" id="p19">
-<div class="hero"><div class="hero-tag">Module 20 // Bayesian</div><div class="hero-title">ALPHA <span>Architecture</span></div><div class="hero-sub">How everything maps to ALPHA production design.</div></div>
-<div class="body">
-
-  <div class="sec-title">ALPHA <span>Architecture</span></div>
-  <div class="sec-sub">How everything in this module maps to ALPHA's production design. From raw data inputs to the PD output seen by the credit committee.</div>
+  <div class="hero"><div class="hero-tag">Module 20 // Bayesian</div><div class="hero-title">ALPHA <span>Architecture</span></div><div class="hero-sub">How everything in this module maps to ALPHA's production design. From raw data inputs to the PD output seen by the credit committee.</div></div><div class="body">
 
   <div class="sh">Full pipeline</div>
   <div class="steps" id="b_alphaSteps">
@@ -1088,16 +1091,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
     </table>
     <div class="callout good"><strong>Institutional positioning:</strong> this output structure matches what a credit committee at a sovereign wealth fund, infrastructure debt facility, or space-focused insurer needs. PD mean for pricing. Stress PD for capital. CI width for diligence gates. SHAP for governance. Implied rating for peer benchmarking.</div>
   </div>
-
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(18)">&#8592; Prev</button><button class="btn primary" onclick="nav(20)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(18)">← Prev</button><button class="btn primary" onclick="nav(20)">Next →</button></div></div>
 <div class="mod" id="p20">
-<div class="hero"><div class="hero-tag">Module 21 // Advanced</div><div class="hero-title">Your <span>Knowledge Map</span></div><div class="hero-sub">What you have covered and what sits at the frontier.</div></div>
-<div class="body">
-
-  <div class="sec-title">Your <span>Knowledge Map</span></div>
-  <div class="sec-sub">What you have covered, what is in this module, and what sits at the frontier of institutional credit risk fluency.</div>
+  <div class="hero"><div class="hero-tag">Module 21 // Advanced</div><div class="hero-title">Your <span>Knowledge Map</span></div><div class="hero-sub">What you have covered, what is in this module, and what sits at the frontier of institutional credit risk fluency.</div></div><div class="body">
 
   <div class="progress-ring">
     <div class="ring-item"><div class="ring-val">6</div><div class="ring-lbl">COVERED</div></div>
@@ -1128,18 +1124,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout good"><strong>What "disgustingly knowledgeable" means in practice:</strong> you can run any credit committee conversation on methodology, defend model choices under scrutiny, spot flaws in competitor frameworks, and connect every technical component back to a capital allocation or pricing decision. By the end of this module you are there.</div>
-</div>
-
-<!-- ═══════════ TAB 1: MONTE CARLO ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(19)">&#8592; Prev</button><button class="btn primary" onclick="nav(21)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(19)">← Prev</button><button class="btn primary" onclick="nav(21)">Next →</button></div></div>
 <div class="mod" id="p21">
-<div class="hero"><div class="hero-tag">Module 22 // Advanced</div><div class="hero-title"><span>Monte Carlo</span> Simulation</div><div class="hero-sub">Simulate thousands of correlated default scenarios.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Monte Carlo</span> Simulation</div>
-  <div class="sec-sub">Simulate thousands of correlated default scenarios. Aggregate into a loss distribution. Read off VaR and CVaR at any confidence level. This is how banks actually compute economic capital.</div>
+  <div class="hero"><div class="hero-tag">Module 22 // Advanced</div><div class="hero-title"><span>Monte Carlo</span> Simulation</div><div class="hero-sub">Simulate thousands of correlated default scenarios. Aggregate into a loss distribution. Read off VaR and CVaR at any confidence level. This is how banks actually compute economic capital.</div></div><div class="body">
 
   <p>The analytical loss distribution (e.g. the normal approximation used in Basel IRB) makes strong parametric assumptions. Monte Carlo makes no distributional assumption about the portfolio loss. It simulates default outcomes directly for each asset in each scenario, then counts the losses. The result is an empirical loss distribution built from the data you gave it.</p>
 
@@ -1215,18 +1202,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout good"><strong>SFIS Gaussian copula Monte Carlo:</strong> SFIS runs this simulation at the portfolio level across 1,763 assets. The systematic factor Z is decomposed into regime-specific sub-factors: macro-financial (shared with terrestrial credit), orbital-specific (space weather, debris density), and operator-idiosyncratic. Correlation structure is parameterised from orbital regime co-location data, not assumed uniform.</div>
-</div>
-
-<!-- ═══════════ TAB 2: COPULAS ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(20)">&#8592; Prev</button><button class="btn primary" onclick="nav(22)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(20)">← Prev</button><button class="btn primary" onclick="nav(22)">Next →</button></div></div>
 <div class="mod" id="p22">
-<div class="hero"><div class="hero-tag">Module 23 // Advanced</div><div class="hero-title"><span>Copula</span> Models</div><div class="hero-sub">Copulas separate marginal distributions from dependence structure.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Copula</span> Models</div>
-  <div class="sec-sub">A copula separates the marginal distribution of each asset's default probability from their joint dependence structure. This is what allows portfolio credit risk to be modelled rigorously.</div>
+  <div class="hero"><div class="hero-tag">Module 23 // Advanced</div><div class="hero-title"><span>Copula</span> Models</div><div class="hero-sub">A copula separates the marginal distribution of each asset's default probability from their joint dependence structure. This is what allows portfolio credit risk to be modelled rigorously.</div></div><div class="body">
 
   <p>Sklar's theorem: any joint distribution F(x₁,…,xₙ) can be written as C(F₁(x₁),…,Fₙ(xₙ)) where C is a copula and F₁…Fₙ are the marginal CDFs. The copula captures correlation structure independently of the marginals. You can combine any set of individual PD models with any dependence structure.</p>
 
@@ -1275,18 +1253,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </table>
 
   <div class="callout warn"><strong>SFIS copula choice:</strong> SFIS uses Gaussian copula for computational tractability across 1,763 assets. The governance documentation must explicitly acknowledge the zero tail dependence limitation and pair the Gaussian copula output with a t-copula stress overlay for Kessler/debris cascade scenarios. This is the same approach used by Moody's Analytics in their infrastructure portfolio models.</div>
-</div>
-
-<!-- ═══════════ TAB 3: STRESS TESTING ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(21)">&#8592; Prev</button><button class="btn primary" onclick="nav(23)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(21)">← Prev</button><button class="btn primary" onclick="nav(23)">Next →</button></div></div>
 <div class="mod" id="p23">
-<div class="hero"><div class="hero-tag">Module 24 // Advanced</div><div class="hero-title"><span>Stress</span> Testing</div><div class="hero-sub">What happens to the portfolio under severe but plausible scenarios.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Stress</span> Testing</div>
-  <div class="sec-sub">Stress testing asks what happens to the portfolio under severe but plausible scenarios. It is not the same as VaR. VaR is a statistical percentile. Stress testing is a conditional scenario.</div>
+  <div class="hero"><div class="hero-tag">Module 24 // Advanced</div><div class="hero-title"><span>Stress</span> Testing</div><div class="hero-sub">Stress testing asks what happens to the portfolio under severe but plausible scenarios. It is not the same as VaR. VaR is a statistical percentile. Stress testing is a conditional scenario.</div></div><div class="body">
 
   <p>A stress test specifies a macro or sector scenario, translates it into shifts in PD, LGD, and EAD across the portfolio, and computes the resulting loss. The scenario is defined by humans, not by a model. This is its strength: it can capture scenarios that have never occurred in historical data.</p>
 
@@ -1343,18 +1312,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
       </div>
     </div>
   </div>
-</div>
-
-<!-- ═══════════ TAB 4: CVA / XVA ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(22)">&#8592; Prev</button><button class="btn primary" onclick="nav(24)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(22)">← Prev</button><button class="btn primary" onclick="nav(24)">Next →</button></div></div>
 <div class="mod" id="p24">
-<div class="hero"><div class="hero-tag">Module 25 // Advanced</div><div class="hero-title">CVA / <span>XVA</span></div><div class="hero-sub">Credit Valuation Adjustment prices counterparty credit risk.</div></div>
-<div class="body">
-
-  <div class="sec-title">CVA / <span>XVA</span></div>
-  <div class="sec-sub">Credit Valuation Adjustment prices the credit risk embedded in a derivative or bilateral contract. It converts counterparty credit risk into a dollar amount that must be deducted from the mark-to-market value of the position.</div>
+  <div class="hero"><div class="hero-tag">Module 25 // Advanced</div><div class="hero-title">CVA / <span>XVA</span></div><div class="hero-sub">Credit Valuation Adjustment prices the credit risk embedded in a derivative or bilateral contract. It converts counterparty credit risk into a dollar amount that must be deducted from the mark-to-market value of the position.</div></div><div class="body">
 
   <p>When you enter a derivative with a counterparty, you are exposed to two risks: market risk (the value of the derivative moves) and credit risk (the counterparty defaults while the derivative is in-the-money to you). CVA is the expected loss from counterparty default, priced into the derivative at inception.</p>
 
@@ -1393,18 +1353,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout"><strong>Space finance relevance:</strong> satellite capacity agreements, spectrum leases, and launch contracts are bilateral long-dated contracts. CVA applies. The counterparty (a satellite operator with no public credit rating) has no CDS market for spread calibration. CVA must be computed using SFIS PD outputs — making ALPHA the direct input to CVA pricing for space capacity contracts.</div>
-</div>
-
-<!-- ═══════════ TAB 5: IFRS 9 ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(23)">&#8592; Prev</button><button class="btn primary" onclick="nav(25)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(23)">← Prev</button><button class="btn primary" onclick="nav(25)">Next →</button></div></div>
 <div class="mod" id="p25">
-<div class="hero"><div class="hero-tag">Module 26 // Advanced</div><div class="hero-title">IFRS 9 <span>Deep Dive</span></div><div class="hero-sub">IFRS 9 changed provisioning from incurred loss to expected credit loss.</div></div>
-<div class="body">
-
-  <div class="sec-title">IFRS 9 <span>Deep Dive</span></div>
-  <div class="sec-sub">IFRS 9 replaced IAS 39 in 2018. It changed loan loss provisioning from incurred loss to expected credit loss (ECL). The mechanics are more complex than most practitioners realise.</div>
+  <div class="hero"><div class="hero-tag">Module 26 // Advanced</div><div class="hero-title">IFRS 9 <span>Deep Dive</span></div><div class="hero-sub">IFRS 9 replaced IAS 39 in 2018. It changed loan loss provisioning from incurred loss to expected credit loss (ECL). The mechanics are more complex than most practitioners realise.</div></div><div class="body">
 
   <p>Under IAS 39 (the old standard), a bank only provisioned for a loan when a loss event had actually occurred. The 2008 crisis revealed this was procyclical: banks built provisions only after the crisis hit, amplifying the shock. IFRS 9 requires provisioning for expected future losses from day one. This is the ECL model.</p>
 
@@ -1451,18 +1402,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </div>
 
   <div class="callout warn"><strong>The cliff effect:</strong> the jump from 12-month ECL to lifetime ECL at Stage migration can be large. A loan migrating from Stage 1 to Stage 2 might see provisions increase 5-10× overnight. This creates P&amp;L volatility that is disproportionate to the underlying credit change, particularly for long-dated infrastructure and satellite loans. IFRS 9 governance must address how SICR triggers are calibrated to avoid mechanical Stage migrations on minor PD movements.</div>
-</div>
-
-<!-- ═══════════ TAB 6: VALIDATION ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(24)">&#8592; Prev</button><button class="btn primary" onclick="nav(26)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(24)">← Prev</button><button class="btn primary" onclick="nav(26)">Next →</button></div></div>
 <div class="mod" id="p26">
-<div class="hero"><div class="hero-tag">Module 27 // Advanced</div><div class="hero-title">Model <span>Validation</span></div><div class="hero-sub">A PD model that cannot be validated is not a model.</div></div>
-<div class="body">
-
-  <div class="sec-title">Model <span>Validation</span></div>
-  <div class="sec-sub">A PD model that cannot be validated is not a model — it is an opinion. Validation proves the model discriminates, calibrates, and remains stable over time.</div>
+  <div class="hero"><div class="hero-tag">Module 27 // Advanced</div><div class="hero-title">Model <span>Validation</span></div><div class="hero-sub">A PD model that cannot be validated is not a model — it is an opinion. Validation proves the model discriminates, calibrates, and remains stable over time.</div></div><div class="body">
 
   <p>Model validation has three components: discrimination (does the model rank-order risk correctly?), calibration (are the predicted PDs accurate on average?), and stability (does the model produce consistent outputs as inputs change?). Each requires different tests.</p>
 
@@ -1510,18 +1452,9 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </table>
 
   <div class="callout warn"><strong>SR 11-7 requirement:</strong> all models used in credit decisions must have formal documentation covering conceptual soundness, data integrity, ongoing monitoring, and outcomes analysis. This is not optional. For ALPHA outputs to be used by institutional clients in credit decisions, an independent validation report must exist. This is a pre-condition for regulatory use, not a nice-to-have.</div>
-</div>
-
-<!-- ═══════════ TAB 7: CREDIT DERIVATIVES ═══════════ -->
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(25)">&#8592; Prev</button><button class="btn primary" onclick="nav(27)">Next &#8594;</button></div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(25)">← Prev</button><button class="btn primary" onclick="nav(27)">Next →</button></div></div>
 <div class="mod" id="p27">
-<div class="hero"><div class="hero-tag">Module 28 // Advanced</div><div class="hero-title"><span>Derivatives</span> &amp; Sovereign</div><div class="hero-sub">CDS mechanics, sovereign rating frameworks, and infrastructure credit.</div></div>
-<div class="body">
-
-  <div class="sec-title"><span>Credit</span> Derivatives</div>
-  <div class="sec-sub">CDS, CDOs, CLOs. Credit derivatives transfer credit risk without transferring the underlying asset. They created the market infrastructure that makes spread-implied PD possible — and nearly destroyed the financial system.</div>
+  <div class="hero"><div class="hero-tag">Module 28 // Advanced</div><div class="hero-title"><span>Credit</span> Derivatives</div><div class="hero-sub">CDS, CDOs, CLOs. Credit derivatives transfer credit risk without transferring the underlying asset. They created the market infrastructure that makes spread-implied PD possible — and nearly destroyed the financial system.</div></div><div class="body">
 
   <div class="sh">Credit Default Swap (CDS)</div>
   <p>A CDS is a bilateral contract. The protection buyer pays a periodic premium (the CDS spread) to the protection seller. If the reference entity defaults, the protection seller pays the notional minus recovery. The CDS spread is the market price of credit risk for the reference entity.</p>
@@ -1561,10 +1494,8 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
   </table>
 
   <div class="callout red"><strong>CDO²  and the 2008 crisis:</strong> CDOs of CDO tranches (CDO²) created synthetic exposures where the underlying correlation assumptions were amplified through multiple tranching layers. The Gaussian copula assigned near-zero tail dependence to diversified pools. In stress, correlation approached 1.0. Senior tranches rated AAA experienced losses exceeding the model's 99.99th percentile. The model was correct given its assumptions. The assumptions were wrong.</div>
-</div>
 
-<!-- ═══════════ TAB 8: SOVEREIGN & INFRA ═══════════ -->
-<div style="height:2px;background:var(--border);margin:28px 0;"></div>
+<div class="sh" style="margin-top:36px;border-top:1px solid var(--border);padding-top:24px;">Sovereign & Infrastructure Credit</div>
 
   <div class="sec-title">Sovereign & <span>Infrastructure</span> Credit</div>
   <div class="sec-sub">The two asset classes most analogous to orbital credit. Sovereign credit has the longest default history. Infrastructure project finance has the closest structural parallels to satellite finance.</div>
@@ -1619,39 +1550,39 @@ input[type=range]{-webkit-appearance:none;flex:1;height:2px;background:var(--bor
 
   <div class="callout"><strong>SWF relevance:</strong> sovereign wealth funds (your primary institutional target) are sophisticated about sovereign credit because they manage sovereign balance sheet risk daily. Framing SFIS outputs in the same analytical language as sovereign credit analysis — coverage ratios, structural protections, macroeconomic sensitivities — is the fastest path to credibility with SWF credit teams.</div>
 
-</div>
-<div class="mfooter"><button class="btn" onclick="nav(26)">&#8592; Prev</button><button class="btn" disabled>Complete</button></div>
-</div>
-  </div>
-</div>
+</div><div class="mfooter"><button class="btn" onclick="nav(26)">← Prev</button><button class="btn" style="color:var(--green);border-color:var(--green);" disabled>All Modules Complete ✓</button></div></div>
+</div><!-- /content -->
+</div><!-- /layout -->
 <script>
+// ── SHARED HELPERS ──
 const _=id=>document.getElementById(id);
 function setM(id,v,c){const e=_(id);if(e){e.textContent=v;e.className='met-v mv '+(c||'');}}
 function getC(id,h){const c=_(id);if(!c)return null;c.width=c.parentElement.offsetWidth-30||640;c.height=h||160;return c.getContext('2d');}
 function rc(v,lo,hi){return v<=lo?'v-low':v<=hi?'v-mid':'v-hi';}
-function ncdf(x){const t=1/(1+.2316419*Math.abs(x));const d=.3989423*Math.exp(-x*x/2);const p=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;}
+function ncdf(x){const t=1/(1+0.2316419*Math.abs(x));const d=0.3989423*Math.exp(-x*x/2);const p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return x>0?1-p:p;}
 function nppf(p){if(p<=0)return-8;if(p>=1)return 8;const a=[2.50662823884,-18.61500062529,41.39119773534,-25.44106049637];const b=[-8.4735109309,23.08336743743,-21.06224101826,3.13082909833];const c=[0.337475482272615,0.976169019091719,0.160797971491821,2.76438810333863e-2,3.8405729373609e-3,3.951896511349e-4,3.21767881767818e-5,2.888167364e-7,3.960315187e-7];const q=p-.5;if(Math.abs(q)<.42){const r=q*q;return q*(((a[3]*r+a[2])*r+a[1])*r+a[0])/((((b[3]*r+b[2])*r+b[1])*r+b[0])*r+1);}let r=p<.5?p:1-p;r=Math.sqrt(-Math.log(r));let x=c[0];for(let i=1;i<9;i++)x=x*r+c[i];return q<0?-x:x;}
 function lgam(x){const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];let y=x,tmp=x+5.5;tmp-=(x+0.5)*Math.log(tmp);let ser=1.000000000190015;for(let j=0;j<6;j++){ser+=c[j]/(++y);}return -tmp+Math.log(2.5066282746310005*ser/x);}
 function lbeta(a,b){return lgam(a)+lgam(b)-lgam(a+b);}
 function betaPDF(x,a,b){if(x<=0||x>=1)return 0;return Math.exp((a-1)*Math.log(x)+(b-1)*Math.log(1-x)-lbeta(a,b));}
 function betaCDF(x,a,b){if(x<=0)return 0;if(x>=1)return 1;const bt=Math.exp(lgam(a+b)-lgam(a)-lgam(b)+a*Math.log(x)+b*Math.log(1-x));if(x<(a+1)/(a+b+2))return bt*betacf(a,b,x)/a;return 1-bt*betacf(b,a,1-x)/b;}
 function betacf(a,b,x){const MAXIT=200,EPS=3e-7,FPMIN=1e-30;const qab=a+b,qap=a+1,qam=a-1;let c=1,d=1-qab*x/qap;if(Math.abs(d)<FPMIN)d=FPMIN;d=1/d;let h=d;for(let m=1;m<=MAXIT;m++){const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;h*=d*c;aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<EPS)break;}return h;}
-function betaQ(p,a,b,tol=1e-6){let lo=0,hi=1,mid;for(let i=0;i<60;i++){mid=(lo+hi)/2;if(betaCDF(mid,a,b)<p)lo=mid;else hi=mid;if(hi-lo<tol)break;}return mid;}
+function betaQ(p,a,b){let lo=0,hi=1,mid;for(let i=0;i<60;i++){mid=(lo+hi)/2;if(betaCDF(mid,a,b)<p)lo=mid;else hi=mid;if(hi-lo<1e-6)break;}return mid;}
+
+// ── NAVIGATION ──
 let cur=0;
 const visited=new Set([0]);
 function nav(i){
   _('p'+cur).classList.remove('active');
   document.querySelectorAll('.nbtn')[cur].classList.remove('active');
-  cur=i; visited.add(i);
+  cur=i;visited.add(i);
   _('p'+i).classList.add('active');
   document.querySelectorAll('.nbtn').forEach((b,j)=>{
     b.classList.remove('active','visited');
-    if(j===i) b.classList.add('active');
-    else if(visited.has(j)) b.classList.add('visited');
+    if(j===i)b.classList.add('active');
+    else if(visited.has(j))b.classList.add('visited');
   });
-  const pct=Math.round(visited.size/28*100);
-  _('pctLbl').textContent=pct+'%';
-  _('pfill').style.width=pct+'%';
+  _('pctLbl').textContent=Math.round(visited.size/28*100)+'%';
+  _('pfill').style.width=Math.round(visited.size/28*100)+'%';
   _('modCtr').textContent=String(i+1).padStart(2,'0')+' / 28';
   document.querySelector('.content').scrollTop=0;
   const inits=[null,m1calc,m2calc,m3calc,m4calc,m5calc,m6calc,m7calc,m8calc,m9calc,m10calc,m11calc,
@@ -1660,22 +1591,26 @@ function nav(i){
     b_tab5calc,()=>{b_tab6calc();b_tab6shap();},b_initSigmaFactors,
     null,a_runMC,a_drawCopulas,()=>{a_runStress();a_runReverse();},
     a_calcCVA,a_calcIFRS,a_drawROC,()=>{a_calcCDS();a_calcDSCR();}];
-  if(inits[i]) setTimeout(inits[i],80);
+  if(inits[i])setTimeout(inits[i],80);
 }
-// V2 FUNCTIONS (p0-p11)
+
+// ── V2 HELPERS ──
+function ratingFor(pd){
+  if(pd<0.02)return{r:'AAA',c:'#1abc9c',c5:'0.09%',sp:'20-50 bps'};
+  if(pd<0.07)return{r:'AA',c:'#2ecc71',c5:'0.27%',sp:'40-80 bps'};
+  if(pd<0.2)return{r:'A',c:'#f1c40f',c5:'0.58%',sp:'70-130 bps'};
+  if(pd<1.0)return{r:'BBB',c:'#e67e22',c5:'1.90%',sp:'120-250 bps'};
+  if(pd<3.5)return{r:'BB',c:'#e74c3c',c5:'7.81%',sp:'250-500 bps'};
+  if(pd<10)return{r:'B',c:'#c0392b',c5:'19.12%',sp:'450-900 bps'};
+  return{r:'CCC',c:'#922b21',c5:'49.33%',sp:'>900 bps'};
+}
+
+// ── V2 MODULE FUNCTIONS ──
 
 // ── HELPERS ──
 
 
-function ratingFor(pd) {
-  if(pd<0.02) return {r:'AAA',c:'#1abc9c',c5:'0.09%',sp:'20–50 bps'};
-  if(pd<0.07) return {r:'AA', c:'#2ecc71',c5:'0.27%',sp:'40–80 bps'};
-  if(pd<0.2)  return {r:'A',  c:'#f1c40f',c5:'0.58%',sp:'70–130 bps'};
-  if(pd<1.0)  return {r:'BBB',c:'#e67e22',c5:'1.90%',sp:'120–250 bps'};
-  if(pd<3.5)  return {r:'BB', c:'#e74c3c',c5:'7.81%',sp:'250–500 bps'};
-  if(pd<10)   return {r:'B',  c:'#c0392b',c5:'19.12%',sp:'450–900 bps'};
-  return           {r:'CCC',c:'#922b21',c5:'49.33%',sp:'>900 bps'};
-}
+
 
 
 
@@ -1699,8 +1634,7 @@ function m1calc(){
 }
 
 function drawBar1(pd,lgd,ead){
-  const ctx=getC('c1',70); if(!ctx) return;
-  const W=ctx.canvas.width, H=70;
+  const ctx=getC('c1',70);if(!ctx)return;const W=ctx.canvas.width,H=70;
   ctx.clearRect(0,0,W,H);
   const total=ead, elV=pd*lgd*ead, cap=pd*lgd*ead*2, rec=ead-elV;
   const segs=[
@@ -1719,7 +1653,7 @@ function drawBar1(pd,lgd,ead){
   ctx.strokeStyle='rgba(200,168,75,0.2)';ctx.strokeRect(12,18,W-24,28);
 }
 
-m1calc();
+
 
 // ── M2 ──
 function m2calc(){
@@ -1732,7 +1666,7 @@ function m2calc(){
   setM('phypd','~'+Math.min(phy,100).toFixed(2)+'%','v-low');
   setM('crprem','~'+crp.toFixed(2)+'%','v-gold');
 }
-m2calc();
+
 
 // ── M3 ──
 function m3calc(){
@@ -1758,7 +1692,7 @@ function m3calc(){
       <span class="bar-val">${b.v.toFixed(0)}%</span>
     </div>`).join('');
 }
-m3calc();
+
 
 // ── M4 ──
 function m4calc(){
@@ -1779,7 +1713,7 @@ function m4calc(){
     bars.appendChild(el);
   }
 }
-m4calc();
+
 
 // ── M5 ──
 function m5calc(){
@@ -1797,8 +1731,7 @@ function m5calc(){
 }
 
 function drawDist5(pd,rho,var999){
-  const ctx=getC('c5',160); if(!ctx) return;
-  const W=ctx.canvas.width, H=160, pad=28;
+  const ctx=getC('c5',160);if(!ctx)return;const W=ctx.canvas.width,H=160, pad=28;
   ctx.clearRect(0,0,W,H);
   const N=180, pts=[];
   const eff=Math.max(rho,0.005);
@@ -1838,7 +1771,7 @@ function drawDist5(pd,rho,var999){
   ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
   ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
 }
-m5calc();
+
 
 // ── M6 ──
 function drawGauge(id,val,max,col){
@@ -1870,7 +1803,7 @@ function m6calc(){
   const gcol=pd<1?'#2ecc71':pd<5?'#f39c12':'#e74c3c';
   drawGauge('gauge6',Math.max(dd,0),8,gcol);
 }
-m6calc();
+
 
 // ── M7 ──
 function m7calc(){
@@ -1885,8 +1818,7 @@ function m7calc(){
 }
 
 function drawSurv7(lam){
-  const ctx=getC('c7',130); if(!ctx) return;
-  const W=ctx.canvas.width, H=130, pad=24;
+  const ctx=getC('c7',130);if(!ctx)return;const W=ctx.canvas.width,H=130, pad=24;
   ctx.clearRect(0,0,W,H);
   ctx.beginPath();
   for(let i=0;i<=100;i++){
@@ -1913,7 +1845,7 @@ function drawSurv7(lam){
   ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
   ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
 }
-m7calc();
+
 
 // ── M8 ──
 function m8calc(){
@@ -1934,7 +1866,7 @@ function m8calc(){
       <span class="bar-val">${f.v}%</span>
     </div>`).join('');
 }
-m8calc();
+
 
 // ── M9 ──
 const rSegs=['#1abc9c','#2ecc71','#f1c40f','#e67e22','#e74c3c','#c0392b','#922b21'];
@@ -1954,16 +1886,16 @@ function m9calc(){
   _('pd9v').textContent=pd.toFixed(2)+'%';
   let idx=rBounds.findIndex(b=>pd<b); if(idx<0) idx=6;
   for(let i=0;i<7;i++){
-    const el=_('rs'+i);
+    const el=document.getElementById('rs'+i);
     el.style.background='var(--border)'; el.style.boxShadow='none';
   }
-  const seg=_('rs'+idx);
+  const seg=document.getElementById('rs'+idx);
   seg.style.background=rSegs[idx]; seg.style.boxShadow=`0 0 8px ${rSegs[idx]}`;
   setM('rat9',rData[idx].r,'v-gold');
   _('cum9').textContent=rData[idx].c5;
   _('spr9').textContent=rData[idx].sp;
 }
-m9calc();
+
 
 // ── M10 ──
 function m10calc(){
@@ -1979,8 +1911,7 @@ function m10calc(){
 }
 
 function drawDist10(pd,rho){
-  const ctx=getC('c10',150); if(!ctx) return;
-  const W=ctx.canvas.width, H=150, pad=24;
+  const ctx=getC('c10',150);if(!ctx)return;const W=ctx.canvas.width,H=150, pad=24;
   ctx.clearRect(0,0,W,H);
   function drawCurve(rhoCurve,col,fill){
     const N=160, pts=[], eff=Math.max(rhoCurve,0.005);
@@ -2010,7 +1941,7 @@ function drawDist10(pd,rho){
   ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
   ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
 }
-m10calc();
+
 
 // ── M11 ──
 function m11calc(){
@@ -2045,8 +1976,7 @@ function m11calc(){
 }
 
 function drawFull11(elp,rho,pd,hurdle,ec,ead){
-  const ctx=getC('c11',80); if(!ctx) return;
-  const W=ctx.canvas.width, H=80, pad=12;
+  const ctx=getC('c11',80);if(!ctx)return;const W=ctx.canvas.width,H=80, pad=12;
   ctx.clearRect(0,0,W,H);
   const comps=[
     {l:'Expected Loss (EL)',v:elp,col:'rgba(200,168,75,0.7)'},
@@ -2064,10 +1994,13 @@ function drawFull11(elp,rho,pd,hurdle,ec,ead){
   ctx.strokeStyle='rgba(200,168,75,0.2)'; ctx.strokeRect(pad,18,W-2*pad,30);
   ctx.fillStyle='rgba(85,96,112,.7)'; ctx.font='8px monospace'; ctx.fillText('Required Spread Breakdown',pad,12);
 }
-m11calc();
 
-// BAYESIAN FUNCTIONS (p12-p19)
 
+// ── BAYESIAN FUNCTIONS ──
+
+
+
+// ── UTILS ──
 
 
 
@@ -2106,7 +2039,6 @@ function b_axisX(ctx,W,H,pad,ticks=[0,0.05,0.1,0.15,0.2,0.3],label='PD'){
 }
 
 
-
 // ── TAB 0 ──
 function b_tab0calc(){
   const n=+_('b_n0').value;
@@ -2121,7 +2053,7 @@ function b_tab0calc(){
   const a0=ess*0.03, b0=ess*0.97;
   const a1=a0+D, b1=b0+n-D;
   const postMean=a1/(a1+b1);
-  const lo=betaQ(0.025,a1,b1), hi=betaQ(0.975,a1,b1);
+  const lo=betaQuantile(0.025,a1,b1), hi=betaQuantile(0.975,a1,b1);
   setM('b_mle0',(mle*100).toFixed(1)+'%');
   setM('b_bay0',(postMean*100).toFixed(2)+'%','v-go');
   setM('b_ci0',((hi-lo)*100).toFixed(2)+'%');
@@ -2145,12 +2077,13 @@ function b_tab0calc(){
   ctx.fillStyle='rgba(200,168,75,1)';ctx.fillText('Posterior',pad+180,pad+14);
 }
 
+
 // ── TAB 1 ──
 let b_selectedPriorIdx=0;
 const b_priorPresets=[{a:2,b:130},{a:3,b:50},{a:3,b:60}];
 
 function b_selectPrior(i,el){
-  document.querySelectorAll('.prior-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('#p13 .prior-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   _('b_pa1').value=b_priorPresets[i].a;
   _('b_pb1').value=b_priorPresets[i].b;
@@ -2178,6 +2111,7 @@ function b_tab1calc(){
   ctx.font='9px monospace';ctx.fillStyle='rgba(200,168,75,0.7)';
   ctx.fillText('Mean: '+(mean*100).toFixed(2)+'%',meanPx+4,pad+12);
 }
+
 
 // ── TAB 2 ──
 function b_tab2calc(){
@@ -2209,6 +2143,7 @@ function b_tab2calc(){
   ctx.fillText('MLE = '+(mle*100).toFixed(1)+'%',mlePx+4,pad+12);
 }
 
+
 // ── TAB 3 ──
 function b_tab3calc(){
   const a=+_('b_a3').value;
@@ -2223,7 +2158,7 @@ function b_tab3calc(){
   const a1=a+d, b1=b+n-d;
   const po=a1/(a1+b1);
   const psd=Math.sqrt(a1*b1/((a1+b1)**2*(a1+b1+1)));
-  const lo=betaQ(0.025,a1,b1)*100, hi=betaQ(0.975,a1,b1)*100;
+  const lo=betaQuantile(0.025,a1,b1)*100, hi=betaQuantile(0.975,a1,b1)*100;
   setM('b_pm3',(pm*100).toFixed(2)+'%');
   setM('b_mle3',(mle*100).toFixed(2)+'%');
   setM('b_po3',(po*100).toFixed(2)+'%','v-go');
@@ -2250,6 +2185,7 @@ function b_tab3calc(){
   ctx.fillStyle='rgba(200,168,75,1)';ctx.fillText('Posterior',pad+170,pad+14);
 }
 
+
 // Sequential
 function b_runSeq3(){
   const truePD=+_('b_truePD3').value/100;
@@ -2267,8 +2203,8 @@ function b_runSeq3(){
     const dClamp=Math.min(Math.round(d),nper);
     a+=dClamp; b+=nper-dClamp;
     means.push(a/(a+b));
-    lo95.push(betaQ(0.025,a,b));
-    hi95.push(betaQ(0.975,a,b));
+    lo95.push(betaQuantile(0.025,a,b));
+    hi95.push(betaQuantile(0.975,a,b));
   }
   const allVals=[...means,...lo95,...hi95,truePD*1.5];
   const maxV=Math.max(...allVals)*1.1;
@@ -2292,6 +2228,7 @@ function b_runSeq3(){
   ctx.fillStyle='rgba(85,96,112,0.8)';ctx.font='8px monospace';
   for(let t=0;t<periods;t+=2) ctx.fillText('T'+(t+1),tx(t)-6,H-4);
 }
+
 
 // ── TAB 4 MCMC ──
 let b_mcmcSamples=[];
@@ -2419,6 +2356,7 @@ function b_drawRhat(){
 }
 
 
+
 function b_showDiag(i){
   document.querySelectorAll('#b_diagSteps .step').forEach((s,j)=>{s.classList.toggle('active',j===i);s.classList.remove('done');});
   document.querySelectorAll('#b_diag0,#b_diag1,#b_diag2,#b_diag3').forEach((c,j)=>c.classList.toggle('active',j===i));
@@ -2487,6 +2425,7 @@ function b_drawPDHorizons(pd1,pd3,pd5,ci1,ci3,ci5,unc){
   ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
 }
+
 
 // ── TAB 6 ──
 function b_tab6calc(){
@@ -2563,6 +2502,7 @@ function b_tab6shap(){
 }
 
 
+
 // ── TAB 7 ──
 function b_showAlpha(i){
   document.querySelectorAll('#b_alphaSteps .step').forEach((s,j)=>{s.classList.remove('active','done');if(j<i)s.classList.add('done');if(j===i)s.classList.add('active');});
@@ -2588,15 +2528,17 @@ function b_initSigmaFactors(){
     </div><div style="margin:-6px 0 8px 0;font-size:10px;color:var(--dim)">${f.desc}</div>`).join('');
 }
 
-// ADVANCED FUNCTIONS (p20-p27)
+
+// ── ADVANCED FUNCTIONS ──
 function a_sv(id,v){const e=_(id);if(e)e.textContent=v;}
 
-// ── TABS ──
 
 
 
 
 
+
+// Normal helpers
 
 
 
@@ -2665,6 +2607,7 @@ function a_drawMChist(losses,EL,var99,var999){
   ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
 }
 
+
 function a_runKessler(){
   const n=+_('a_kess_n').value, rhoC=+_('a_kess_rho').value;
   const pd=+_('a_kess_pd').value/100, lgd=0.85, ead=40;
@@ -2699,6 +2642,7 @@ function a_runKessler(){
   ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
 }
 
+
 // ── COPULAS ──
 function a_drawCopulas(){
   const rho=+_('a_cop_rho').value, nu=+_('a_cop_nu').value;
@@ -2712,7 +2656,7 @@ function a_drawCopulas(){
 }
 
 function a_drawScatter(id,rho,isT,nu){
-  const ctx=getC(id,160);if(!ctx)return;
+  const ctx=getCtx(id,160);if(!ctx)return;
   const W=ctx.canvas.width,H=160,pad=12;
   ctx.clearRect(0,0,W,H);
   ctx.fillStyle='rgba(255,255,255,0.015)';ctx.fillRect(pad,pad,W-2*pad,H-2*pad);
@@ -2745,13 +2689,14 @@ function a_drawScatter(id,rho,isT,nu){
   ctx.strokeRect(W-W/5,H-H/5,W/5-pad,H/5-pad);
 }
 
+
 // ── STRESS TESTING ──
 const a_scenPresets={
   base:{pd:1,lgd:0,rho:0},mild:{pd:2,lgd:5,rho:0.05},severe:{pd:4,lgd:15,rho:0.15},
   solar:{pd:3,lgd:10,rho:0.4},kessler:{pd:5,lgd:25,rho:0.6},operator:{pd:6,lgd:20,rho:0.1}
 };
 function a_setScen(key,btn){
-  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#p23 .toggle-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   const p=a_scenPresets[key];
   _('a_st_pd').value=p.pd; _('a_st_lgd').value=p.lgd; _('a_st_rho').value=p.rho;
@@ -2799,6 +2744,7 @@ function a_drawStressComp(base,stressed){
   ctx.beginPath();ctx.moveTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
 }
 
+
 function a_runReverse(){
   const cap=+_('a_rev_cap').value, basePD=+_('a_rev_pd').value/100, EAD=+_('a_rev_ead').value;
   a_sv('a_rev_capv','$'+cap+'M'); a_sv('a_rev_pdv',(basePD*100).toFixed(1)+'%'); a_sv('a_rev_eadv','$'+EAD+'M');
@@ -2819,6 +2765,7 @@ function a_runReverse(){
   setM('a_rev_head',((1/breakMult)*100).toFixed(0)+'%','vmi');
 }
 
+
 // ── CVA ──
 function a_calcCVA(){
   const N=+_('a_cva_n').value, pd=+_('a_cva_pd').value/100;
@@ -2835,6 +2782,7 @@ function a_calcCVA(){
   setM('a_cva_pct',cvaPct.toFixed(2)+'%','vmi');
   setM('a_cva_sp',Math.round(cvaSpread)+' bps','vgo');
 }
+
 
 // ── IFRS 9 ──
 function a_calcIFRS(){
@@ -2854,6 +2802,7 @@ function a_calcIFRS(){
   setM('a_ifrs_lecl','$'+eclL.toFixed(2)+'M',rc(eclL/ead*100,5,20));
   setM('a_ifrs_step',stepUp.toFixed(1)+'×',stepUp>3?'vhi':stepUp>1.5?'vmi':'vlo');
 }
+
 
 // ── ROC ──
 function a_drawROC(){
@@ -2895,6 +2844,7 @@ function a_drawROC(){
   ctx.fillStyle='rgba(59,110,165,.8)';ctx.fillText('B AUC='+aucB.toFixed(2),pad+8,pad+28);
 }
 
+
 // ── CDS ──
 function a_calcCDS(){
   const sp=+_('a_cds_s').value, lgd=+_('a_cds_lgd').value/100, T=+_('a_cds_t').value;
@@ -2907,6 +2857,7 @@ function a_calcCDS(){
   setM('a_cds_pd5',pd5.toFixed(2)+'%',rc(pd5,10,30));
   setM('a_cds_phys','~'+(pd1*0.5).toFixed(2)+'%');
 }
+
 
 // ── DSCR ──
 function a_calcDSCR(){
@@ -2931,7 +2882,9 @@ function a_calcDSCR(){
   }
 }
 
-setTimeout(m1calc, 100);
+
+// ── INIT ──
+setTimeout(m1calc,100);
 </script>
 </body>
 </html>
