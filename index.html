@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apogee — Credit Risk Intelligence</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#080c16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Apogee">
+<link rel="apple-touch-icon" href="icon-192.svg">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -4035,5 +4041,6 @@ function n_drawKessler(dHistory,lossHistory,assets){
 // ── INIT ──
 setTimeout(m1calc,100);
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js');});}</script>
 </body>
 </html>

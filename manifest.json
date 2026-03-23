@@ -1,0 +1,13 @@
+{
+  "name": "Apogee",
+  "short_name": "Apogee",
+  "description": "Interactive credit risk intelligence platform",
+  "start_url": "/apogee/",
+  "display": "standalone",
+  "background_color": "#080c16",
+  "theme_color": "#080c16",
+  "icons": [
+    { "src": "/apogee/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml" },
+    { "src": "/apogee/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml" }
+  ]
+}
